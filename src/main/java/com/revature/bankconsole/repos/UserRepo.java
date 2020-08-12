@@ -1,5 +1,5 @@
 package com.revature.bankconsole.repos;
-
+import com.revature.bankconsole.models.Role;
 import com.revature.bankconsole.models.UserInfo;
 
 public class UserRepo {

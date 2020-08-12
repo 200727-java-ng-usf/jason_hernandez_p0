@@ -1,6 +1,7 @@
 package com.revature.bankconsole.screens;
 
 import com.revature.bankconsole.models.UserInfo;
+import com.revature.bankconsole.services.UserServices;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,9 +9,9 @@ import java.io.InputStreamReader;
 
 public class RegistrationScreen extends Screen {
 
-    private UserService userService;
+    private UserServices userService;
 
-    public RegistrationScreen(UserService userService) {
+    public RegistrationScreen(UserServices userService) {
         System.out.println("[LOG]");
         this.userService = userService;
     }

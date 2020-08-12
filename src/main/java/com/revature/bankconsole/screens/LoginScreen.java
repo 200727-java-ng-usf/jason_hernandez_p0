@@ -1,14 +1,16 @@
 package com.revature.bankconsole.screens;
 
+import com.revature.bankconsole.services.UserServices;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class LoginScreen extends Screen {
 
-    private UserService userService;
+    private UserServices userService;
 
-    public LoginScreen(UserService userService) {
+    public LoginScreen(UserServices userService) {
         System.out.println("[LOG]");
         this.userService = userService;
     }
