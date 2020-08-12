@@ -1,5 +1,7 @@
 package com.revature.bankconsole.screens;
 
+import com.revature.bankconsole.models.UserInfo;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -30,8 +32,8 @@ public class RegistrationScreen extends Screen {
             System.out.println("Password: ");
             password = console.readLine();
 
-            AppUser newUser = new AppUser(firstname, lastname, username, password);
-            AppUser registeredUser = userService.register(newUser);
+            UserInfo newUser = new UserInfo(firstname, lastname, username, password);
+            UserInfo registeredUser = userService.register(newUser);
 
         } catch (IOException ioe) {
             ioe.printStackTrace();
