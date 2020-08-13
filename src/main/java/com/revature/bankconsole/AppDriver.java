@@ -17,7 +17,7 @@ public class AppDriver {
         LoginScreen loginScreen = new LoginScreen(userServices);
         loginScreen.render();
 
-        // If new user, displat registration screen
+        // If new user, display registration screen
         RegistrationScreen registrationScreen = new RegistrationScreen(userServices);
         registrationScreen.render();
     }
