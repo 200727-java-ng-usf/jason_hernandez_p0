@@ -22,6 +22,7 @@ public class RegistrationScreen extends Screen {
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String firstname, lastname, username, password;
 
+        // Prompt user for initial registration credentials
         try {
             System.out.println("Sign up for a new account.");
             System.out.print("first name: ");

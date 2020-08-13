@@ -14,6 +14,7 @@ public class UserInfo {
 
     public UserInfo(){}
 
+    // Basic registration: first and last name, pich a username and password
     public UserInfo(String firstName, String lastName, String userName, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,16 +23,19 @@ public class UserInfo {
         this.role = Role.LOCKED;
     }
 
+    // Another level registration adds role (change role from locked)
     public UserInfo(String firstName, String lastName, String userName, String password, Role role) {
         this(firstName, lastName, userName, password);
         this.role = role;
     }
 
+    // Assigns an id
     public UserInfo(Integer id, String firstName, String lastName, String userName, String password, Role role) {
         this(firstName, lastName, userName, password, role);
         this.id = id;
     }
 
+    // Makes a copy (for thread safety)
     public UserInfo(UserInfo copy) {
         this(copy.id, copy.firstName, copy.lastName, copy.userName, copy.password, copy.role);
     }

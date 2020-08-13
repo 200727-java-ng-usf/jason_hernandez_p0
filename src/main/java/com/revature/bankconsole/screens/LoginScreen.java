@@ -21,6 +21,7 @@ public class LoginScreen extends Screen {
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String username, password;
 
+        // Prompt user for login credentials
         try {
             System.out.println("Please provide your login credentials.");
             System.out.print("Username: ");
