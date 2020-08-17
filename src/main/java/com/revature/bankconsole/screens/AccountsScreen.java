@@ -1,6 +1,10 @@
 package com.revature.bankconsole.screens;
 
-public class AccountsScreen extends Screen{
+import com.revature.bankconsole.accounts.UserAccounts;
 
-    private userAccounts userAccounts;
+public abstract class AccountsScreen extends Screen{
+
+    private UserAccounts userAccounts;
+
+
 }
