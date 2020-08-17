@@ -9,7 +9,7 @@ public class CheckingAccount {
         balance = 0;
     }
 
-    public CheckingAccount(double initialBalance, double initialInterest) {
+    public CheckingAccount(double initialBalance) {
         balance = initialBalance;
     }
 
@@ -18,7 +18,11 @@ public class CheckingAccount {
     }
 
     public void withdraw(double amount) {
-        balance = balance - amount;
+        if(balance - amount < 0) {
+            System.out.println("Insufficient funds"); // My own code added
+        } else {
+            balance = balance - amount;
+        }
     }
 
     public double getBalance() {

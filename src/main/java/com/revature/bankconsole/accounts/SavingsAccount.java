@@ -2,7 +2,7 @@ package com.revature.bankconsole.accounts;
 
 class SavingsAccount {
 
-    //SavingsAccount.java - Jimmy Kurian
+    //SavingsAccount.java - Jimmy Kurian (GitHUb user)
 
         private double balance;
         private double interest;
@@ -22,7 +22,11 @@ class SavingsAccount {
         }
 
         public void withdraw(double amount) {
-            balance = balance - amount;
+            if(balance - amount < 0) {
+                System.out.println("Insufficient funds"); // My own code added
+            } else {
+                balance = balance - amount;
+            }
         }
 
         public void addInterest() {
