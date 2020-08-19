@@ -16,7 +16,7 @@ public class LoginScreen extends Screen {
     }
 
     @Override
-    public void render() {
+    public String render() {
 
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String username, password;
@@ -35,5 +35,6 @@ public class LoginScreen extends Screen {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+        return username;
     }
 }

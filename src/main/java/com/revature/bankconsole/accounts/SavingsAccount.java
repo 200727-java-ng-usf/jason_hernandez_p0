@@ -18,10 +18,21 @@ class SavingsAccount {
         }
 
         public void deposit(double amount) {
+
+            // Kurian's code did not include prevention of negative amounts
+            if (amount < 0) {
+                System.out.println("Invalid amount");
+            }
             balance = balance + amount;
         }
 
         public void withdraw(double amount) {
+            // No negative amounts
+            if (amount < 0) {
+                System.out.println("Invalid amount");
+            }
+
+            // Kurian's code also did not include overdraft prevention
             if(balance - amount < 0) {
                 System.out.println("Insufficient funds"); // My own code added
             } else {

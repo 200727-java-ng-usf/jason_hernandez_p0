@@ -1,7 +1,6 @@
 package com.revature.bankconsole.screens;
 
 import com.revature.bankconsole.accounts.UserAccounts;
-import com.revature.bankconsole.services.UserServices;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +16,7 @@ public abstract class AccountsScreen extends Screen{
     }
 
     @Override
-    public void render() {
+    public String render() {
 
         // Show user accounts
         if(savingsNumber) {
@@ -31,13 +30,13 @@ public abstract class AccountsScreen extends Screen{
 
         // Allow deposits and withdrawals
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        float transaction;
 
         try {
             System.out.print("Please select an account.  ");
             String account = console.readLine();
 
             System.out.println("You entered: " + account);
+            return account;
 
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -48,9 +47,12 @@ public abstract class AccountsScreen extends Screen{
             String transType = console.readLine();
 
             System.out.println("You entered: " + transType);
+            return transType;
 
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+
+        return;
     }
 }

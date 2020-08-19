@@ -17,7 +17,7 @@ public class RegistrationScreen extends Screen {
     }
 
     @Override
-    public void render() {
+    public String render() {
 
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String firstname, lastname, username, password;
@@ -40,5 +40,6 @@ public class RegistrationScreen extends Screen {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+        return firstname;
     }
 }
