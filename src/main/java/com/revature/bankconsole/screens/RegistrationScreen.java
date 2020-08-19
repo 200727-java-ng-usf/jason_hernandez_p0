@@ -20,7 +20,7 @@ public class RegistrationScreen extends Screen {
     public String render() {
 
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        String firstname, lastname, username, password;
+        String firstname = "", lastname = "", username = "", password = "";
 
         // Prompt user for initial registration credentials
         try {
