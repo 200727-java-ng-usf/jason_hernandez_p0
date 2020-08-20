@@ -1,12 +1,12 @@
 package com.revature.bankconsole;
 
+import com.revature.bankconsole.accounts.InterestCalculator;
 import com.revature.bankconsole.repos.UserRepo;
 import com.revature.bankconsole.screens.AccountsScreen;
 import com.revature.bankconsole.screens.LoginScreen;
 import com.revature.bankconsole.screens.RegistrationScreen;
 import com.revature.bankconsole.screens.TransactionScreen;
 import com.revature.bankconsole.services.UserServices;
-import com.revature.bankconsole.accounts.UserAccounts;
 
 public class AppDriver {
 
@@ -31,6 +31,10 @@ public class AppDriver {
         // Allow transactions
         TransactionScreen transactionScreen = new TransactionScreen(userAccounts);
         transactionScreen.render();
+
+        // Display interest earned
+        InterestCalculator interestCalculator = new InterestCalculator();
+        // may want to make it extend screen
 
     }
 }

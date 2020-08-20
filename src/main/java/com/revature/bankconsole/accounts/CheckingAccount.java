@@ -34,7 +34,7 @@ public class CheckingAccount {
         }
     }
 
-    public double getBalance() {
+    public static double getBalance() {
         return balance;
     }
 }

@@ -46,8 +46,8 @@ class SavingsAccount {
             balance = balance + balance * interest;
         }
 
-        public double getBalance() {
-            return balance;
+        public static double getBalance() {
+            return 0;
         }
 
     }
