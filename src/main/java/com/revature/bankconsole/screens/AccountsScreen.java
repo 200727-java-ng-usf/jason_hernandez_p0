@@ -4,6 +4,11 @@ import com.revature.bankconsole.accounts.UserAccounts;
 
 public class AccountsScreen extends Screen{
 
+    public AccountsScreen() {
+        super("SearchBooksScreen", "/search");
+        System.out.println("[LOG] - Instantiating " + super.getName());
+    }
+
     private UserAccounts userAccounts;
 
     public AccountsScreen(UserAccounts userAccounts) {

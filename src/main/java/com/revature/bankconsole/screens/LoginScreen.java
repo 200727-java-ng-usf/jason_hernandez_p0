@@ -6,35 +6,40 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static com.revature.bankconsole.AppDriver.app;
+
 public class LoginScreen extends Screen {
 
-    private UserServices userService;
+    private UserService userService;
 
-    public LoginScreen(UserServices userService) {
-        System.out.println("Log in to view your accounts, depodit funds, or withdraw funds.");
-        this.userService = userService;
+    public LoginScreen(UserService userService) {
+        super("Login Screen", "/login");
     }
 
     @Override
-    public String render() {
+    public void render() {
 
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String username, password;
 
-        // Prompt user for login credentials
         try {
             System.out.println("Please provide your login credentials.");
             System.out.print("Username: ");
-            username = console.readLine();
+            username = app.getConsole().readLine();
 
             System.out.println("Password: ");
-            password = console.readLine();
+            password = app.getConsole().readLine();
 
             System.out.println("You entered username: " + username + " / " + password);
+
+            app.setCurrentUser(userService.authenticate(username, password));
+
+
+            if (app.isSessionValid()) {
+                app.getRouter().navigate("/dashboard");
+            }
 
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        return username;
     }
 }

@@ -11,35 +11,37 @@ public class RegistrationScreen extends Screen {
 
     private UserServices userService;
 
-    public RegistrationScreen(UserServices userService) {
-        System.out.println("Welcome to the registration screen");
+
+    public RegistrationsScreen(UserService userService) {
+        super("RegisterScreen", "/register");
         this.userService = userService;
     }
 
     @Override
-    public String render() {
+    public void render() {
 
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        String firstname = "", lastname = "", username = "", password = "";
+        String firstname, lastname, username, password;
 
-        // Prompt user for initial registration credentials
         try {
             System.out.println("Sign up for a new account.");
             System.out.print("first name: ");
-            firstname = console.readLine();
+            firstname = app.getConsole().readLine();
             System.out.print("last name: ");
-            lastname = console.readLine();
+            lastname = app.getConsole().readLine();
             System.out.print("Username: ");
-            username = console.readLine();
+            username = app.getConsole().readLine();
             System.out.println("Password: ");
-            password = console.readLine();
+            password = app.getConsole().readLine();
 
-            UserInfo newUser = new UserInfo(firstname, lastname, username, password);
-            UserInfo registeredUser = userService.register(newUser);
+            AppUser newUser = new AppUser(firstname, lastname, username, password);
+            userService.register(newUser);
+
+            if (app.isSessionValid()) {
+                app.getRouter().navigate("/home");
+            }
 
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        return firstname;
     }
 }
