@@ -24,6 +24,7 @@ class SavingsAccount {
                 System.out.println("Invalid amount");
             }
             balance = balance + amount;
+            System.out.println("Your new balance is " + balance);
         }
 
         public void withdraw(double amount) {
@@ -34,9 +35,10 @@ class SavingsAccount {
 
             // Kurian's code also did not include overdraft prevention
             if(balance - amount < 0) {
-                System.out.println("Insufficient funds"); // My own code added
+                System.out.println("Insufficient funds");
             } else {
                 balance = balance - amount;
+                System.out.println("Your remaining balance is " + balance);
             }
         }
 

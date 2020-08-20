@@ -7,7 +7,7 @@ public class AccountsScreen extends Screen{
     private UserAccounts userAccounts;
 
     public AccountsScreen(UserAccounts userAccounts) {
-        System.out.println("[LOG]");
+        System.out.println("Your accounts are " + userAccounts);
         this.userAccounts = userAccounts;
     }
 

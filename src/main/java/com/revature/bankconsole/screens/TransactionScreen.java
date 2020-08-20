@@ -11,8 +11,8 @@ public class TransactionScreen extends Screen {
     private UserAccounts userAccounts;
 
     public TransactionScreen(UserAccounts userAccounts) {
-        System.out.println("[LOG]");
         this.userAccounts = userAccounts;
+        System.out.println("Your accounts are " + userAccounts);
     }
 
     @Override
@@ -44,6 +44,6 @@ public class TransactionScreen extends Screen {
             ioe.printStackTrace();
         }
 
-        return null;
+        return userAccounts;
     }
 }

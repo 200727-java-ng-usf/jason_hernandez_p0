@@ -11,7 +11,7 @@ public class LoginScreen extends Screen {
     private UserServices userService;
 
     public LoginScreen(UserServices userService) {
-        System.out.println("[LOG]");
+        System.out.println("Log in to view your accounts, depodit funds, or withdraw funds.");
         this.userService = userService;
     }
 

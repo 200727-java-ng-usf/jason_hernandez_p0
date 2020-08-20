@@ -12,7 +12,7 @@ public class RegistrationScreen extends Screen {
     private UserServices userService;
 
     public RegistrationScreen(UserServices userService) {
-        System.out.println("[LOG]");
+        System.out.println("Welcome to the registration screen");
         this.userService = userService;
     }
 

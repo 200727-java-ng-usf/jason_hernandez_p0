@@ -73,7 +73,6 @@ public class UserServices {
         if(user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
         if(user.getLastName() == null || user.getLastName().trim().equals("")) return false;
         if(user.getUserName() == null || user.getUserName().trim().equals("")) return false;
-        if(user.getPassword() == null || user.getPassword().trim().equals("")) return false;
-        return true;
+        return user.getPassword() != null && !user.getPassword().trim().equals("");
     }
 }
