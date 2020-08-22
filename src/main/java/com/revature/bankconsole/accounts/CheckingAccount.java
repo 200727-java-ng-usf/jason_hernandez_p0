@@ -18,6 +18,8 @@ public class CheckingAccount {
             System.out.println("Invalid amount");
         }
         balance = balance + amount;
+
+
     }
 
     public void withdraw(double amount) {
@@ -34,7 +36,4 @@ public class CheckingAccount {
         }
     }
 
-    public static double getBalance() {
-        return balance;
-    }
 }

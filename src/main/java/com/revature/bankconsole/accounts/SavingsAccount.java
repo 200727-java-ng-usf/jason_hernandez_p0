@@ -1,6 +1,6 @@
 package com.revature.bankconsole.accounts;
 
-class SavingsAccount {
+public class SavingsAccount {
 
     //SavingsAccount.java - Jimmy Kurian (GitHUb user)
 
