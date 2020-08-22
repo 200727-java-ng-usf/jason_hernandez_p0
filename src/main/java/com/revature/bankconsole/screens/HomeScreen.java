@@ -2,8 +2,7 @@ package com.revature.bankconsole.screens;
 
 import static com.revature.bankconsole.AppDriver.app;
 
-public class HomeScreen
-        extends Screen {
+public class HomeScreen extends Screen {
 
     public HomeScreen() {
         super("HomeScreen", "/home");
@@ -33,7 +32,7 @@ public class HomeScreen
                     app.setAppRunning(false);
                     break;
                 default:
-                    System.out.println("[LOG] - Invalid selection!");
+                    System.out.println("Invalid selection!");
             }
 
         } catch (Exception e) {

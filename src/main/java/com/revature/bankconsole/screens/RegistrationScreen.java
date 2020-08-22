@@ -12,7 +12,7 @@ public class RegistrationScreen extends Screen {
     private UserServices userService;
 
 
-    public RegistrationsScreen(UserService userService) {
+    public RegistrationsScreen(UserServices userService) {
         super("RegisterScreen", "/register");
         this.userService = userService;
     }
@@ -20,7 +20,7 @@ public class RegistrationScreen extends Screen {
     @Override
     public void render() {
 
-        String firstname, lastname, username, password;
+        String firstname, lastname, username, password, email;
 
         try {
             System.out.println("Sign up for a new account.");
@@ -32,8 +32,10 @@ public class RegistrationScreen extends Screen {
             username = app.getConsole().readLine();
             System.out.println("Password: ");
             password = app.getConsole().readLine();
+            System.out.println("Email: ");
+            email = app.getConsole().readLine();
 
-            AppUser newUser = new AppUser(firstname, lastname, username, password);
+            UserInfo newUser = new UserInfo(firstname, lastname, username, password, email);
             userService.register(newUser);
 
             if (app.isSessionValid()) {
@@ -41,7 +43,8 @@ public class RegistrationScreen extends Screen {
             }
 
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            System.out.println("Error: failed to register");
+            app.getRouter().navigate("/register");
         }
     }
 }

@@ -10,9 +10,9 @@ import static com.revature.bankconsole.AppDriver.app;
 
 public class LoginScreen extends Screen {
 
-    private UserService userService;
+    private UserServices userService;
 
-    public LoginScreen(UserService userService) {
+    public LoginScreen(UserServices userService) {
         super("Login Screen", "/login");
     }
 
@@ -39,7 +39,8 @@ public class LoginScreen extends Screen {
             }
 
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            System.out.println("Error - failed to login.");
+            app.getRouter().navigate("/login");
         }
     }
 }
