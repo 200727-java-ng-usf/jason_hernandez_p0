@@ -10,10 +10,9 @@ public class DashboardScreen extends Screen {
 
     @Override
     public void render() {
-        System.out.println("Welcome to your dashboard!\n");
-        System.out.println("1) Search Books");
-        System.out.println("2) View Your Profile");
-        System.out.println("3) Logout");
+        System.out.println("Welcome to your dashboard!");
+        System.out.println("1) View accounts");
+        System.out.println("2) Logout");
 
         try {
             System.out.print("> ");
@@ -21,12 +20,9 @@ public class DashboardScreen extends Screen {
 
             switch (userSelection) {
                 case "1":
-                    app.getRouter().navigate("/search");
+                    app.getRouter().navigate("/accounts");
                     break;
                 case "2":
-                    app.getRouter().navigate("/profile");
-                    break;
-                case "3":
                     app.setCurrentUser(null);
                     app.getRouter().navigate("/home");
                     break;

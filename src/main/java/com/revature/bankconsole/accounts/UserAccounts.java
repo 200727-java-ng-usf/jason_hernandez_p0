@@ -23,7 +23,7 @@ public class UserAccounts {
         this.checkingNumber = checkingNumber;
     }
 
-    public double getSavingsBalance() {
+    public float getSavingsBalance() {
         return savingsBalance;
     }
 
@@ -31,7 +31,7 @@ public class UserAccounts {
         this.savingsBalance = savingsBalance;
     }
 
-    public double getCheckingBalance() {
+    public float getCheckingBalance() {
         return checkingBalance;
     }
 
