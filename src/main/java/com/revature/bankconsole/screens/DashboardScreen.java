@@ -1,4 +1,5 @@
 package com.revature.bankconsole.screens;
+import static com.revature.bankconsole.AppDriver.app;
 
 public class DashboardScreen extends Screen {
 

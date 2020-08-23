@@ -105,4 +105,18 @@ public class AccountRepo {
         }
         return newAccount;
     }
+
+        private Set<AccountRepo> mapResultSet(ResultSet rs) throws SQLException {
+            Set<AccountInfo> accounts = new HashSet<>();
+
+            while (rs.next()) {
+                AccountInfo temp = new AccountInfo();
+                temp.setAccountNumber(rs.getInt("account_number"));
+                temp.setBalance(rs.getFloat("balance"));
+
+                accounts.add(temp);
+            }
+            return accounts;
+        }
+    }
 }

@@ -16,6 +16,7 @@ public class UserServices {
         System.out.println("[LOG] - Instantiating" + this.getClass().getName());
         userRepo = repo;
     }
+
     public UserInfo authenticate(String username, String password) {
         if(username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
             throw new RuntimeException("Invalid credentials provided!");
@@ -32,7 +33,7 @@ public class UserServices {
             throw new RuntimeException("Invalid user fields provided during registration.");
         }
         Optional<UserInfo> existingUser = userRepo.findUserByUsername(newUser.getUserName());
-        if(userRepo.findUserByUsername(newUser.getUserName()) != null) {
+        if(userRepo.findUserByUsername(newUser.getUserName()).isPresent()) {
             throw new RuntimeException("That username is already in use.");
         }
 
