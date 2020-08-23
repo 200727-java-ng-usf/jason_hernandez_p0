@@ -2,38 +2,28 @@ package com.revature.bankconsole.accounts;
 
 public class CheckingAccount {
 
-    private double balance;
+    public void transactionType (String transaction) {
 
-    public CheckingAccount() {
-        balance = 0;
-    }
+        float balance = 0;
+        float amount = 0;
 
-    public CheckingAccount(double initialBalance) {
-        balance = initialBalance;
-    }
-
-    public void deposit(double amount) {
-        // Prevention of negative amounts
-        if (amount < 0) {
-            System.out.println("Invalid amount");
-        }
-        balance = balance + amount;
-
-
-    }
-
-    public void withdraw(double amount) {
-
-        // Prevention of negative amounts
+        // Prevention of negative deposits/withdrawals
         if (amount < 0) {
             System.out.println("Invalid amount");
         }
 
-        if(balance - amount < 0) {
-            System.out.println("Insufficient funds"); // My own code added
-        } else {
-            balance = balance - amount;
+        switch(transaction) {
+            case "deposit":
+
+                balance = balance + amount;
+
+            case "withdrawal":
+                if(balance - amount < 0) {
+                    System.out.println("Insufficient funds"); // My own code added
+                } else {
+                    balance = balance - amount;
+                }
+            }
         }
-    }
 
 }

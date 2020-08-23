@@ -28,6 +28,7 @@ public class AppState {
                 .addScreen(new LoginScreen(userService))
                 .addScreen(new DashboardScreen())
                 .addScreen(new AccountsScreen())
+                .addScreen(new TransactionScreen())
                 .addScreen(new UserProfileScreen());
 
 

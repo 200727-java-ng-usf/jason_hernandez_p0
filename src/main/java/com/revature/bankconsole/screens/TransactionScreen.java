@@ -16,7 +16,7 @@ public class TransactionScreen extends Screen {
     }
 
     @Override
-    public String render() {
+    public void render() {
 
         // Allow deposits and withdrawals
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
@@ -26,7 +26,6 @@ public class TransactionScreen extends Screen {
             String account = console.readLine();
 
             System.out.println("You entered: " + account);
-            return account;
 
         } catch (
                 IOException ioe) {
@@ -38,12 +37,10 @@ public class TransactionScreen extends Screen {
             String transType = console.readLine();
 
             System.out.println("You entered: " + transType);
-            return transType;
 
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
 
-        return userAccounts;
     }
 }

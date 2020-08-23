@@ -11,6 +11,13 @@ public class AccountsScreen extends Screen{
         System.out.println("[LOG] - Instantiating " + super.getName());
     }
 
+//    select u.first_name, u.last_name, sa.account_number, sa.balance
+//    from users u
+//    join user_accounts ua
+//    on ua.user_id = u.id
+//    join savings_accounts sa
+//    on sa.account_number = ua.savings_number;
+
     @Override
     public void render() {
 
