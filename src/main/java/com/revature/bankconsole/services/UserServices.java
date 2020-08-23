@@ -1,8 +1,8 @@
 package com.revature.bankconsole.services;
 import com.revature.bankconsole.exceptions.AuthenticationException;
-import com.revature.bankconsole.models.Role;
 import com.revature.bankconsole.models.UserInfo;
 import com.revature.bankconsole.repos.UserRepo;
+import static com.revature.bankconsole.AppDriver.app;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -31,12 +31,11 @@ public class UserServices {
         if (!validateUserFields(newUser)) {
             throw new RuntimeException("Invalid user fields provided during registration.");
         }
-        Optional<UserInfo> existingUser = Optional.ofNullable(userRepo.findUserByUsername(newUser.getUserName()));
+        Optional<UserInfo> existingUser = userRepo.findUserByUsername(newUser.getUserName());
         if(userRepo.findUserByUsername(newUser.getUserName()) != null) {
             throw new RuntimeException("That username is already in use.");
         }
 
-        newUser.setRole(Role.BASIC_MEMBER);
         UserInfo registeredUser = userRepo.save(newUser);
 
         app.setCurrentUser(registeredUser);
@@ -45,9 +44,7 @@ public class UserServices {
     public Set<UserInfo> getAllUsers() {
         return new HashSet<>();
     }
-    public Set<UserInfo> getUsersByRole() {
-        return new HashSet<>();
-    }
+
     public Set<UserInfo> getUserById() {
         return new HashSet<>();
     }

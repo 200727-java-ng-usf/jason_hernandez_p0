@@ -10,34 +10,31 @@ public class UserInfo {
     private String lastName;
     private String userName;
     private String password;
-    private Role role;
+    private String email;
 
     public UserInfo(){}
 
-    // Basic registration: first and last name, pick a username and password
-    public UserInfo(String firstName, String lastName, String userName, String password) {
+    // Basic registration: first and last name, email, pick a username and password
+    public UserInfo(String firstName, String lastName, String userName,
+                    String password, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
-        this.role = Role.LOCKED;
-    }
-
-    // Another level registration adds role (change role from locked)
-    public UserInfo(String firstName, String lastName, String userName, String password, Role role) {
-        this(firstName, lastName, userName, password);
-        this.role = role;
+        this.email = email;
     }
 
     // Assigns an id
-    public UserInfo(Integer id, String firstName, String lastName, String userName, String password, Role role) {
-        this(firstName, lastName, userName, password, role);
+    public UserInfo(Integer id, String firstName, String lastName,
+                    String userName, String password, String email) {
+        this(firstName, lastName, userName, password, email);
         this.id = id;
     }
 
     // Makes a copy (for thread safety)
     public UserInfo(UserInfo copy) {
-        this(copy.id, copy.firstName, copy.lastName, copy.userName, copy.password, copy.role);
+        this(copy.id, copy.firstName, copy.lastName, copy.userName,
+                copy.password, copy.email);
     }
 
     public Integer getId() {
@@ -80,12 +77,12 @@ public class UserInfo {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -96,7 +93,7 @@ public class UserInfo {
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role +
+                ", email=" + email +
                 '}';
     }
 
@@ -110,11 +107,12 @@ public class UserInfo {
                 Objects.equals(lastName, appUser.lastName) &&
                 Objects.equals(userName, appUser.userName) &&
                 Objects.equals(password, appUser.password) &&
-                role == appUser.role;
+                Objects.equals(email, appUser.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, userName, password, role);
+        return Objects.hash(id, firstName, lastName,
+                userName, password, email);
     }
 }

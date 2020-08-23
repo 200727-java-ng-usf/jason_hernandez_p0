@@ -3,9 +3,9 @@ package com.revature.bankconsole.screens;
 import com.revature.bankconsole.models.UserInfo;
 import com.revature.bankconsole.services.UserServices;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
+import static com.revature.bankconsole.AppDriver.app;
 
 public class RegistrationScreen extends Screen {
 

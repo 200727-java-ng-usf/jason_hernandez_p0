@@ -33,6 +33,7 @@ public class HomeScreen extends Screen {
                     break;
                 default:
                     System.out.println("Invalid selection!");
+                    app.getRouter().navigate("/home");
             }
 
         } catch (Exception e) {

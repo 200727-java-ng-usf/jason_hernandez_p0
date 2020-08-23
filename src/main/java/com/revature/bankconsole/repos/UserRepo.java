@@ -1,5 +1,5 @@
 package com.revature.bankconsole.repos;
-import com.revature.bankconsole.models.Role;
+
 import com.revature.bankconsole.models.UserInfo;
 import com.revature.bankconsole.utilities.ConnectionFactory;
 
@@ -13,9 +13,7 @@ import java.util.Set;
 
 public class UserRepo {
 
-    private String baseQuery = "SELECT * FROM revabooks.app_users au " +
-            "JOIN revabooks.user_roles ur " +
-            "ON au.role_id = ur.id ";
+    private String baseQuery = "SELECT * FROM bank-console.users u ";
 
     public UserRepo() {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
@@ -65,11 +63,11 @@ public class UserRepo {
     }
 
 
-    public void save(UserInfo newUser) {
+    public UserInfo save(UserInfo newUser) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "INSERT INTO revabooks.app_users " +
-                    "(username, password, first_name, last_name, email, role_id) " +
+                    "(username, password, first_name, last_name, email) " +
                     "VALUES (?, ?, ?, ?, ?, ?,)";
 
             PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
@@ -79,7 +77,6 @@ public class UserRepo {
             pstmt.setString(3, newUser.getFirstName());
             pstmt.setString(4, newUser.getLastName());
             pstmt.setString(5, newUser.getEmail());
-            pstmt.setInt(6, newUser.getRole().ordinal() + 1);
 
             int affectedRows = pstmt.executeUpdate();
             // check the affected rows
@@ -94,6 +91,7 @@ public class UserRepo {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        return newUser;
     }
 
     private Set<UserRepo> mapResultSet(ResultSet rs) throws SQLException {
@@ -106,7 +104,7 @@ public class UserRepo {
             temp.setPassword(rs.getString("password"));
             temp.setFirstName(rs.getString("first_name"));
             temp.setLastName(rs.getString("last_name"));
-            temp.setRole(Role.getByName(rs.getString("name")));
+            temp.setEmail(rs.getString(rs.getString("email")));
 
             users.add(temp);
         }
