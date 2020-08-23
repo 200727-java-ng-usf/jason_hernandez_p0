@@ -14,7 +14,7 @@ public class UserInfo {
 
     public UserInfo(){}
 
-    // Basic registration: first and last name, pich a username and password
+    // Basic registration: first and last name, pick a username and password
     public UserInfo(String firstName, String lastName, String userName, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

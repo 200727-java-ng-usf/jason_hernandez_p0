@@ -2,6 +2,7 @@ package com.revature.bankconsole.repos;
 
 import com.revature.bankconsole.accounts.CheckingAccount;
 import com.revature.bankconsole.accounts.SavingsAccount;
+import com.revature.bankconsole.models.AccountInfo;
 import com.revature.bankconsole.models.UserInfo;
 import com.revature.bankconsole.utilities.ConnectionFactory;
 
@@ -14,17 +15,18 @@ import java.util.Set;
 
 public class TransactionRepo {
 
-    public void save(SavingsAccount newUser) {
+    public void save(SavingsAccount newTransaction) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "INSERT INTO revabooks.app_users " +
-                    "(balance) " +
-                    "VALUES (balance + ?)";
-
+            // Pre-made query template
+            String sql = "Update bank-console.savings_account " +
+                    "Set balance = ? " +
+                    "Where account_number = ?";
+            // Prepare a statement
             PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
-
-            pstmt.setString(1, newUser.getTransaction());
-
+            // Retrieve values from getters
+            pstmt.setFloat(1, newTransaction.getBalance());
+            pstmt.setInt(2, AccountInfo.getAccountNumber());
 
             int affectedRows = pstmt.executeUpdate();
             // check the affected rows
@@ -32,7 +34,7 @@ public class TransactionRepo {
                 // get the ID back
                 ResultSet rs = pstmt.getGeneratedKeys();
                 while (rs.next()) {
-                    newUser.setTrans(rs.getInt(1));
+                    newTransaction.setBalance(rs.getInt(1));
                 }
 
             }
@@ -41,16 +43,17 @@ public class TransactionRepo {
         }
     }
 
-    public void save(CheckingAccount newUser) {
+    public void save(CheckingAccount newTransaction) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "INSERT INTO revabooks.app_users " +
-                    "(balance) " +
-                    "VALUES (balance + ?)";
+            String sql = "UPDATE bank-console.checking_account " +
+                    "Set balance = ?  " +
+                    "Where account_number = ?";
 
             PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
 
-            pstmt.setString(1, newUser.getTransaction());
+            pstmt.setString(1, newTransaction.getBalance());
+            pstmt.setInt(2, AccountInfo.getAccountNumber());
 
             int affectedRows = pstmt.executeUpdate();
             // check the affected rows
