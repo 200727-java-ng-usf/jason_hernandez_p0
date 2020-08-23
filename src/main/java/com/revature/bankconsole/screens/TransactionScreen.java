@@ -11,8 +11,17 @@ public class TransactionScreen extends Screen {
     private UserAccounts userAccounts;
 
     public TransactionScreen(UserAccounts userAccounts) {
+        super("TranscationScreen", "/transaction");
         this.userAccounts = userAccounts;
-        System.out.println("Your accounts are " + userAccounts);
+        Integer savingsAccountNumber = userAccounts.getSavingsNumber();
+        Integer checkingAccountNumber = userAccounts.getCheckingNumber();
+        System.out.println("Your accounts are:");
+        if (savingsAccountNumber != null) {
+            System.out.println("Savings: " + savingsAccountNumber);
+        }
+        if(checkingAccountNumber != null) {
+            System.out.println("Checking: " + checkingAccountNumber);
+        }
     }
 
     @Override

@@ -6,4 +6,36 @@ public class UserAccounts {
 
     double savingsBalance = SavingsAccount.getBalance();
     double checkingBalance = CheckingAccount.getBalance();
+
+    public Integer getSavingsNumber() {
+        return savingsNumber;
+    }
+
+    public void setSavingsNumber(int savingsNumber) {
+        this.savingsNumber = savingsNumber;
+    }
+
+    public Integer getCheckingNumber() {
+        return checkingNumber;
+    }
+
+    public void setCheckingNumber(int checkingNumber) {
+        this.checkingNumber = checkingNumber;
+    }
+
+    public double getSavingsBalance() {
+        return savingsBalance;
+    }
+
+    public void setSavingsBalance(double savingsBalance) {
+        this.savingsBalance = savingsBalance;
+    }
+
+    public double getCheckingBalance() {
+        return checkingBalance;
+    }
+
+    public void setCheckingBalance(double checkingBalance) {
+        this.checkingBalance = checkingBalance;
+    }
 }
