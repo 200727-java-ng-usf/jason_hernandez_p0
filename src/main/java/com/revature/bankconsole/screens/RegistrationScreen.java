@@ -12,7 +12,7 @@ public class RegistrationScreen extends Screen {
     private UserServices userService;
 
 
-    public RegistrationsScreen(UserServices userService) {
+    public RegistrationScreen(UserServices userService) {
         super("RegisterScreen", "/register");
         this.userService = userService;
     }
