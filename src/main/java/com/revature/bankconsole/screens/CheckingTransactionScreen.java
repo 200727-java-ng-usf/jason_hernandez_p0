@@ -28,13 +28,13 @@ public class CheckingTransactionScreen extends Screen{
                     float depositAmount;
                     System.out.print("Enter the deposit amount: $");
                     depositAmount = app.getConsole().read();
-                    return depositAmount;
+                    //return depositAmount;
                 break;
                 case 2:
                     float withdrawalAmount;
                     System.out.print("Enter the withdrawal amount: $");
                     withdrawalAmount = app.getConsole().read();
-                    return withdrawalAmount;
+                    //return withdrawalAmount;
                 break;
                 default:
                     System.out.println("[LOG] - Invalid selection!");

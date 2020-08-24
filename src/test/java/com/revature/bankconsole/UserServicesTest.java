@@ -41,7 +41,7 @@ public class UserServicesTest {
 
     @Test
     public void authenticateWithUnknownCredentials() {
-        UserInfo expectedUser = new UserInfo("Adam", "Inn", "admin", "p4ssw0rd");
+        UserInfo expectedUser = new UserInfo("Adam", "Inn", "admin", "p4ssw0rd", "admin@revbooks.com");
         Mockito.when(mockUserRepo.findUserByCredentials(Mockito.anyString(), Mockito.anyString()))
                 .thenReturn(java.util.Optional.of(expectedUser));
 
@@ -52,7 +52,7 @@ public class UserServicesTest {
 
     @Test
     public void authenticateWithValidCredentials() {
-        UserInfo expectedUser = new UserInfo("Adam", "Inn", "admin", "p4ssw0rd");
+        UserInfo expectedUser = new UserInfo("Adam", "Inn", "admin", "p4ssw0rd", "admin@revbooks.com");
         Mockito.when(mockUserRepo.findUserByCredentials(Mockito.anyString(), Mockito.anyString()))
                 .thenReturn(java.util.Optional.of(expectedUser));
 
