@@ -66,7 +66,7 @@ public class UserRepo {
     public UserInfo save(UserInfo newUser) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "INSERT INTO revabooks.app_users " +
+            String sql = "INSERT INTO bank-console.users " +
                     "(username, password, first_name, last_name, email) " +
                     "VALUES (?, ?, ?, ?, ?, ?,)";
 

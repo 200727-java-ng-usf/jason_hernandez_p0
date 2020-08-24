@@ -16,9 +16,7 @@ import java.util.Set;
 
 public class AccountRepo {
 
-    private String baseQuery = "SELECT * FROM revabooks.app_users au " +
-            "JOIN revabooks.user_roles ur " +
-            "ON au.role_id = ur.id ";
+    private String baseQuery = "SELECT * FROM bank-console.savings_accounts ";
 
     public AccountRepo() {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());

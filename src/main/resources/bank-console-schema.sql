@@ -96,3 +96,7 @@ on sa.account_number = ua.savings_number;
 
 commit;
 
+alter table user_accounts 
+drop column id;
+
+select * from user_accounts;

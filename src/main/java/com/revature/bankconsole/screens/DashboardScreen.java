@@ -12,7 +12,8 @@ public class DashboardScreen extends Screen {
     public void render() {
         System.out.println("Welcome to your dashboard!");
         System.out.println("1) View accounts");
-        System.out.println("2) Logout");
+        System.out.println("2) Open a new account");
+        System.out.println("3) Logout");
 
         try {
             System.out.print("> ");
@@ -23,6 +24,9 @@ public class DashboardScreen extends Screen {
                     app.getRouter().navigate("/accounts");
                     break;
                 case "2":
+                    app.getRouter().navigate("/newaccount");
+                    break;
+                case "3":
                     app.setCurrentUser(null);
                     app.getRouter().navigate("/home");
                     break;
