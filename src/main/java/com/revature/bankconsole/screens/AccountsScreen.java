@@ -26,11 +26,11 @@ public class AccountsScreen extends Screen {
         System.out.println("Your accounts are:");
         if (savingsAccountNumber != null) {
             System.out.println("Savings: " + savingsAccountNumber);
-            System.out.println("balance: " + savingsAccountBalance);
+            System.out.println("balance: $" + savingsAccountBalance);
         }
         if (checkingAccountNumber != null) {
             System.out.println("Checking: " + checkingAccountNumber);
-            System.out.println("balance " + checkingAccountBalance);
+            System.out.println("balance: $" + checkingAccountBalance);
         }
 
         try {

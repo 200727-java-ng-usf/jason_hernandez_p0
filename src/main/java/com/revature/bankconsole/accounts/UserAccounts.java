@@ -24,7 +24,7 @@ public class UserAccounts {
     }
 
     public float getSavingsBalance() {
-        return savingsBalance;
+        return (float) savingsBalance;
     }
 
     public void setSavingsBalance(double savingsBalance) {
@@ -32,7 +32,7 @@ public class UserAccounts {
     }
 
     public float getCheckingBalance() {
-        return checkingBalance;
+        return (float) checkingBalance;
     }
 
     public void setCheckingBalance(double checkingBalance) {
