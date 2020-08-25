@@ -2,7 +2,7 @@ package com.revature.bankconsole.accounts;
 
 public class CheckingAccount {
 
-    float balance = UserAccounts.getCheckingBalance();
+    float balance;
     float amount = 0;
 
     public void transactionType(String transaction) {

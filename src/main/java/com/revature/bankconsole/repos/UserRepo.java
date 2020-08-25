@@ -94,7 +94,7 @@ public class UserRepo {
         return newUser;
     }
 
-    private Set<UserRepo> mapResultSet(ResultSet rs) throws SQLException {
+    private Set<UserInfo> mapResultSet(ResultSet rs) throws SQLException {
         Set<UserInfo> users = new HashSet<>();
 
         while (rs.next()) {

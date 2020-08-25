@@ -29,7 +29,7 @@ public class SavingsTransactionScreen extends Screen{
 
                         System.out.print("Enter the deposit amount: $");
                         amount = app.getConsole().read();
-                       // return amount;
+//                        return amount;
                         break;
                     case 2:
 

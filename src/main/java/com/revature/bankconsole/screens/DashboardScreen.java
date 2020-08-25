@@ -31,7 +31,7 @@ public class DashboardScreen extends Screen {
                     app.getRouter().navigate("/home");
                     break;
                 default:
-                    System.out.println("[LOG] - Invalid selection!");
+                    System.out.println("Invalid selection!");
                     app.getRouter().navigate("/dashboard");
             }
 

@@ -13,7 +13,10 @@ import java.sql.SQLException;
 
 public class TransactionRepo {
 
+    AccountInfo queryAccount;
+
     public void save(SavingsAccount newTransaction) {
+
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             // Pre-made query template
@@ -24,7 +27,7 @@ public class TransactionRepo {
             PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
             // Retrieve values from getters
             pstmt.setFloat(1, newTransaction.getBalance());
-            pstmt.setInt(2, AccountInfo.getAccountNumber());
+            pstmt.setInt(2, queryAccount.getAccountNumber());
 
             int affectedRows = pstmt.executeUpdate();
             // check the affected rows
@@ -51,7 +54,7 @@ public class TransactionRepo {
             PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
 
             pstmt.setFloat(1, newTransaction.getBalance());
-            pstmt.setInt(2, AccountInfo.getAccountNumber());
+            pstmt.setInt(2, queryAccount.getAccountNumber());
 
             int affectedRows = pstmt.executeUpdate();
             // check the affected rows
