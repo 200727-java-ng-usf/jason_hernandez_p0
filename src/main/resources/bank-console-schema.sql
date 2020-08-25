@@ -57,15 +57,21 @@ create table user_accounts(
 	
 	constraint account_fk_1
 	foreign key(user_id)
-	references users,
+	references users 
+	on delete cascade
+	on update cascade,
 	
 	constraint account_fk_2
 	foreign key(savings_number)
-	references savings_accounts,
+	references savings_accounts
+	on delete cascade
+	on update cascade,
 	
 	constraint account_fk_3
 	foreign key(checking_number)
 	references checking_accounts
+	on delete cascade
+	on update cascade
 );
 
 insert into users(first_name, last_name, email) 
@@ -97,6 +103,29 @@ on sa.account_number = ua.savings_number;
 commit;
 
 alter table user_accounts 
-drop column id;
+drop constraint account_fk_1;
 
-select * from user_accounts;
+alter table user_accounts 
+drop constraint account_fk_2;
+
+alter table user_accounts 
+drop constraint account_fk_3;
+
+alter table user_accounts 
+add constraint account_fk_1 
+foreign key(user_id)
+	references users
+	on delete cascade 
+	on update cascade,
+	
+add constraint account_fk_2
+foreign key(savings_number)
+	references savings_accounts
+	on delete cascade 
+	on update cascade,
+	
+add constraint account_fk_2
+foreign key(checking_number)
+	references checking_accounts
+	on delete cascade 
+	on update cascade;

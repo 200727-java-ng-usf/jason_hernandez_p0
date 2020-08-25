@@ -11,5 +11,6 @@ public class UserProfileScreen extends Screen{
     @Override
     public void render() {
         System.out.println("Current user: " + app.getCurrentUser());
+        app.getRouter().navigate("/dashboard");
     }
 }

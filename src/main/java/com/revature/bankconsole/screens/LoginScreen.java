@@ -35,7 +35,7 @@ public class LoginScreen extends Screen {
 
 
             if (app.isSessionValid()) {
-                app.getRouter().navigate("/dashboard");
+                app.getRouter().navigate("/profile");
             }
 
         } catch (IOException ioe) {
