@@ -1,8 +1,7 @@
-package com.revature.bankconsole;
+package com.revature.bankconsole.services;
 
 import com.revature.bankconsole.models.UserInfo;
 import com.revature.bankconsole.repos.UserRepo;
-import com.revature.bankconsole.services.UserServices;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -56,7 +55,7 @@ public class UserServicesTest {
         Mockito.when(mockUserRepo.findUserByCredentials(Mockito.anyString(), Mockito.anyString()))
                 .thenReturn(java.util.Optional.of(expectedUser));
 
-        UserInfo actualResult = sut.authenticate("admin", "password");
+        UserInfo actualResult = sut.authenticate("admin", "p4ssw0rd");
 
         Assert.assertEquals(expectedUser, actualResult);
 

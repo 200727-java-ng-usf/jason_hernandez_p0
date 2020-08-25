@@ -22,7 +22,7 @@ public class AccountRepo {
         System.out.println("[LOG] - Instantiating " + this.getClass().getName());
     }
 
-    public Optional<SavingsAccount> findAccountNumber(String username, String password) {
+    public Optional<SavingsAccount> findAccountNumber(int savings_number, float balance) {
 
         Optional<SavingsAccount> _account = Optional.empty();
 
@@ -30,8 +30,8 @@ public class AccountRepo {
             String sql = baseQuery +
                     "WHERE account_number = ? AND balance = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, account_number);
-            pstmt.setString(2, balance);
+            pstmt.setInt(1, savings_number);
+            pstmt.setFloat(2, balance);
 
             ResultSet rs = pstmt.executeQuery();
 
@@ -117,4 +117,4 @@ public class AccountRepo {
             return accounts;
         }
     }
-}
+
