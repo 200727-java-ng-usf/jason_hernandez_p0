@@ -55,15 +55,7 @@ public class TransactionScreen extends Screen {
             ioe.printStackTrace();
         }
 
-        try {
-            System.out.print("Do you want to deposit or withdraw?  ");
-            String transType = console.readLine();
 
-            System.out.println("You entered: " + transType);
-
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
 
     }
 }

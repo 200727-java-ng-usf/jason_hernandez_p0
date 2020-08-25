@@ -2,7 +2,7 @@ package com.revature.bankconsole.accounts;
 
 public class SavingsAccount {
 
-    float balance = 0;
+    float balance = UserAccounts.getSavingsBalance();
     float amount = 0;
     float interest = 0;
 

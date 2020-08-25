@@ -2,7 +2,7 @@ package com.revature.bankconsole.accounts;
 
 public class CheckingAccount {
 
-    float balance = 0;
+    float balance = UserAccounts.getCheckingBalance();
     float amount = 0;
 
     public void transactionType(String transaction) {
@@ -12,16 +12,17 @@ public class CheckingAccount {
             System.out.println("Invalid amount");
         }
 
+        // Two possibilities
         switch (transaction) {
             case "deposit":
 
-                balance = balance + amount;
+                balance = balance + amount; // add deposit to balance
 
             case "withdrawal":
-                if (balance - amount < 0) {
+                if (balance - amount < 0) { // This if statement prevents overdrafts
                     System.out.println("Insufficient funds"); // My own code added
                 } else {
-                    balance = balance - amount;
+                    balance = balance - amount; // subtract withdrawal from balance
                 }
         }
     }
