@@ -1,9 +1,8 @@
 package com.revature.bankconsole.repos;
 
-import com.revature.bankconsole.accounts.CheckingAccount;
 import com.revature.bankconsole.accounts.SavingsAccount;
+import com.revature.bankconsole.accounts.UserAccounts;
 import com.revature.bankconsole.models.AccountInfo;
-import com.revature.bankconsole.models.UserInfo;
 import com.revature.bankconsole.utilities.ConnectionFactory;
 
 import java.sql.Connection;
@@ -14,13 +13,10 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-public class AccountRepo {
+public class SavingsRepo {
 
     private String baseQuery = "SELECT * FROM bank-console.savings_accounts ";
 
-    public AccountRepo() {
-        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
-    }
 
     public Optional<SavingsAccount> findAccountNumber(int savings_number, float balance) {
 
@@ -43,28 +39,6 @@ public class AccountRepo {
 
         return _account;
     }
-
-    public Optional<CheckingAccount> findBalance(String username) {
-
-        Optional<CheckingAccount> _account = Optional.empty();
-
-        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-
-            String sql = baseQuery + "WHERE username = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, username);
-
-            ResultSet rs = pstmt.executeQuery();
-            _account = mapResultSet(rs).stream().findFirst();
-
-
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
-        return _account;
-
-    }
-
     public AccountInfo save(AccountInfo newAccount) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
@@ -95,7 +69,7 @@ public class AccountRepo {
 
             PreparedStatement pstmt2 = conn.prepareStatement(sql, new String[]{"id"});
 
-            pstmt2.setFloat(1, UserInfo.getId());
+            pstmt2.setFloat(1, newAccount.getAccountNumber());
             pstmt2.setFloat(2, newAccount.getAccountNumber());
 
         } catch (SQLException ex) {
@@ -103,13 +77,13 @@ public class AccountRepo {
         }
         return newAccount;
     }
-
-        private Set<AccountRepo> mapResultSet(ResultSet rs) throws SQLException {
-            Set<AccountInfo> accounts = new HashSet<>();
+        private Set<SavingsAccount> mapResultSet(ResultSet rs) throws SQLException {
+            Set<SavingsAccount> accounts = new HashSet<>();
 
             while (rs.next()) {
-                AccountInfo temp = new AccountInfo();
-                temp.setAccountNumber(rs.getInt("account_number"));
+                SavingsAccount temp = new SavingsAccount();
+                UserAccounts temp2 = new UserAccounts();
+                temp2.setSavingsNumber(rs.getInt("account_number"));
                 temp.setBalance(rs.getFloat("balance"));
 
                 accounts.add(temp);

@@ -38,7 +38,7 @@ public class SavingsTransactionScreen extends Screen{
                        // return amount;
                         break;
                     default:
-                        System.out.println("[LOG] - Invalid selection!");
+                        System.out.println("Invalid selection!");
                         app.getRouter().navigate("/savings");
                 }
             } catch (Exception e) {
