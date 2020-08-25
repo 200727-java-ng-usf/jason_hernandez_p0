@@ -1,6 +1,5 @@
 package com.revature.bankconsole.screens;
 
-import com.revature.bankconsole.accounts.SavingsAccount;
 import com.revature.bankconsole.accounts.UserAccounts;
 
 import static com.revature.bankconsole.AppDriver.app;
@@ -17,6 +16,8 @@ public class SavingsTransactionScreen extends Screen{
     @Override
     public void render() {
 
+        float amount = 0;
+
         System.out.println("Select 1 for deposit, 2 for withdrawal");
 
             try {
@@ -25,16 +26,16 @@ public class SavingsTransactionScreen extends Screen{
 
                 switch (userSelection) {
                     case 1:
-                        float depositAmount;
+
                         System.out.print("Enter the deposit amount: $");
-                        depositAmount = app.getConsole().read();
-                        //return depositAmount;
+                        amount = app.getConsole().read();
+                       // return amount;
                         break;
                     case 2:
-                        float withdrawalAmount;
+
                         System.out.print("Enter the withdrawal amount: $");
-                        withdrawalAmount = app.getConsole().read();
-                        //return withdrawalAmount;
+                        amount = app.getConsole().read();
+                       // return amount;
                         break;
                     default:
                         System.out.println("[LOG] - Invalid selection!");
