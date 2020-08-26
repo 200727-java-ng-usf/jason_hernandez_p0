@@ -39,7 +39,7 @@ public class OpenAccountScreen extends Screen {
                     app.getRouter().navigate("/home");
                     break;
                 default:
-                    System.out.println("[LOG] - Invalid selection!");
+                    System.out.println("[404] - Invalid selection!");
                     app.getRouter().navigate("/dashboard");
             }
 

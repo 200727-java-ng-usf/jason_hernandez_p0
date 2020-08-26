@@ -42,7 +42,7 @@ public class SavingsRepo {
     public AccountInfo save(AccountInfo newAccount) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "INSERT INTO bank-console.checking_accounts " +
+            String sql = "INSERT INTO bank-console.savings_accounts " +
                     "(account_number, balance) " +
                     "VALUES (?, ?)";
 
@@ -83,7 +83,7 @@ public class SavingsRepo {
             while (rs.next()) {
                 SavingsAccount temp = new SavingsAccount();
                 UserAccounts temp2 = new UserAccounts();
-                temp2.setSavingsNumber(rs.getInt("account_number"));
+                temp2.setAccountNumber(rs.getInt("account_number"));
                 temp.setBalance(rs.getFloat("balance"));
 
                 accounts.add(temp);

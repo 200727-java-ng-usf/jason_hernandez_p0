@@ -1,18 +1,26 @@
 package com.revature.bankconsole.services;
 
 import com.revature.bankconsole.models.AccountInfo;
-import com.revature.bankconsole.repos.AccountRepo;
+import com.revature.bankconsole.repos.CheckingRepo;
+import com.revature.bankconsole.repos.SavingsRepo;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class AccountServices {
 
-    private AccountRepo accountRepo;
+    private SavingsRepo savingsRepo;
 
-    public AccountServices(AccountRepo aRepo) {
+    public AccountServices(SavingsRepo sRepo) {
         System.out.println("[LOG] - Instantiating" + this.getClass().getName());
-        accountRepo = aRepo;
+        savingsRepo = sRepo;
+    }
+
+    private CheckingRepo checkingRepo;
+
+    public AccountServices(CheckingRepo cRepo) {
+        System.out.println("[LOG] - Instantiating" + this.getClass().getName());
+        checkingRepo = cRepo;
     }
 
     public Set<AccountInfo> getAllAccounts() {

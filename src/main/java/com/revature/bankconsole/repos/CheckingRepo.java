@@ -40,7 +40,27 @@ public class CheckingRepo {
 
     }
 
-    public AccountInfo save(AccountInfo newAccount) {
+    public Optional<CheckingAccount> findAccountByNumber(Integer checking_number) {
+
+        Optional<CheckingAccount> _account = Optional.empty();
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            String sql = baseQuery + "WHERE username = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, checking_number);
+
+            ResultSet rs = pstmt.executeQuery();
+            _account = mapResultSet(rs).stream().findFirst();
+
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        return _account;
+    }
+
+        public AccountInfo save(AccountInfo newAccount) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "INSERT INTO bank-console.checking_accounts " +
@@ -77,7 +97,7 @@ public class CheckingRepo {
         while (rs.next()) {
             CheckingAccount temp = new CheckingAccount();
             UserAccounts temp2 = new UserAccounts();
-            temp2.setCheckingNumber(rs.getInt("account_number"));
+            temp2.setAccountNumber(rs.getInt("account_number"));
             temp.setBalance(rs.getFloat("balance"));
 
             accounts.add(temp);

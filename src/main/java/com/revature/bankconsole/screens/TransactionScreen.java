@@ -21,17 +21,15 @@ public class TransactionScreen extends Screen {
     public void render() {
 
         // Must use wrapper class to do a null check
-        Integer savingsAccountNumber = userAccounts.getSavingsNumber();
-        Integer checkingAccountNumber = userAccounts.getCheckingNumber();
+        Integer accountNumber = userAccounts.getAccountNumber();
+
 
         // Show only accounts that the user has
         System.out.println("Your accounts are:");
-        if (savingsAccountNumber != null) {
-            System.out.println("Savings: " + savingsAccountNumber);
+        if (accountNumber != null) {
+            System.out.println("Savings: " + accountNumber);
         }
-        if(checkingAccountNumber != null) {
-            System.out.println("Checking: " + checkingAccountNumber);
-        }
+
 
         // Allow deposits and withdrawals
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
@@ -54,8 +52,6 @@ public class TransactionScreen extends Screen {
                 IOException ioe) {
             ioe.printStackTrace();
         }
-
-
 
     }
 }

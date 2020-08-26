@@ -10,10 +10,9 @@ import java.sql.SQLException;
 
 public class UserAccounts {
     // Declare fields
-    int savingsNumber;
-    int checkingNumber;
-    double savingsBalance;
-    double checkingBalance;
+    static int accountNumber;
+    static double accountBalance;
+
 
     private UserInfo accessUserId;
 
@@ -39,6 +38,7 @@ public class UserAccounts {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        return UserAccounts.this;
     }
 
     public UserAccounts checkingQuery() {
@@ -64,38 +64,24 @@ public class UserAccounts {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        return UserAccounts.this;
     }
 
 
-    public Integer getSavingsNumber() {
-        return savingsNumber;
+    public Integer getAccountNumber() {
+        return accountNumber;
     }
 
-    public void setSavingsNumber(int savingsNumber) {
-        this.savingsNumber = savingsNumber;
+    public void setAccountNumber(int savingsNumber) {
+        accountNumber = savingsNumber;
     }
 
-    public Integer getCheckingNumber() {
-        return checkingNumber;
+    public float getAccountBalance() {
+        return (float) accountBalance;
     }
 
-    public void setCheckingNumber(int checkingNumber) {
-        this.checkingNumber = checkingNumber;
+    public void setAccountBalance(double savingsBalance) {
+        accountBalance = savingsBalance;
     }
 
-    public float getSavingsBalance() {
-        return (float) savingsBalance;
-    }
-
-    public void setSavingsBalance(double savingsBalance) {
-        this.savingsBalance = savingsBalance;
-    }
-
-    public float getCheckingBalance() {
-        return (float) checkingBalance;
-    }
-
-    public void setCheckingBalance(double checkingBalance) {
-        this.checkingBalance = checkingBalance;
-    }
 }

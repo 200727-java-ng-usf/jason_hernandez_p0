@@ -2,6 +2,7 @@ package com.revature.bankconsole.services;
 
 import com.revature.bankconsole.models.AccountInfo;
 import com.revature.bankconsole.repos.AccountRepo;
+import com.revature.bankconsole.repos.CheckingRepo;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,7 +15,7 @@ import java.util.Set;
 public class AccountServicesTest {
 
     private AccountServices sut;
-    private AccountRepo mockAccountRepo = Mockito.mock(AccountRepo.class);
+    private CheckingRepo mockAccountRepo = Mockito.mock(CheckingRepo.class);
     Set<AccountInfo> mockAccounts = new HashSet<>();
 
     @Before
@@ -33,8 +34,8 @@ public class AccountServicesTest {
 
     @Test
     public void findNonExistentAccount() {
-        AccountInfo expectedAccount = new AccountInfo((float) 6789.02, 3);
-        Mockito.when(mockAccountRepo.findAccountNumber(Mockito.anyInt(), Mockito.anyInt()))
+        AccountInfo expectedAccount = new AccountInfo((float) 6789.02, 8);
+        Mockito.when(mockAccountRepo.findAccountByNumber(Mockito.anyInt()))
                 .thenReturn(java.util.Optional.of(expectedAccount));
         AccountInfo actualResult = (AccountInfo) sut.getAccountById();
         Assert.assertEquals(expectedAccount, actualResult);
@@ -43,7 +44,7 @@ public class AccountServicesTest {
     @Test
     public void findExistingAccount() {
         AccountInfo expectedAccount = new AccountInfo((float) 4321.89, 1);
-        Mockito.when(mockAccountRepo.findAccountNumber(Mockito.anyInt(), Mockito.anyInt()))
+        Mockito.when(mockAccountRepo.findAccountByNumber(Mockito.anyInt()))
                 .thenReturn(java.util.Optional.of(expectedAccount));
         AccountInfo actualResult = (AccountInfo) sut.getAccountById();
         Assert.assertEquals(expectedAccount, actualResult);

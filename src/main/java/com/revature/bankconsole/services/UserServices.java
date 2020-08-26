@@ -19,7 +19,7 @@ public class UserServices {
 
     public UserInfo authenticate(String username, String password) {
         if(username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
-            throw new RuntimeException("Invalid credentials provided!");
+            throw new RuntimeException("401 - Invalid credentials provided!");
         }
         UserInfo authUser = userRepo.findUserByCredentials(username, password)
                 .orElseThrow(AuthenticationException::new);
