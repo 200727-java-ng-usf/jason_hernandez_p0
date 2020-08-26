@@ -2,6 +2,7 @@ package com.revature.bankconsole.screens;
 
 import com.revature.bankconsole.models.AccountInfo;
 import com.revature.bankconsole.models.UserInfo;
+import com.revature.bankconsole.services.AccountServices;
 import com.revature.bankconsole.utilities.ConnectionFactory;
 
 import java.sql.Connection;
@@ -13,15 +14,21 @@ import static com.revature.bankconsole.AppDriver.app;
 
 public class OpenAccountScreen extends Screen {
 
-    public OpenAccountScreen() {
+    private AccountServices accountServices;
+
+    public OpenAccountScreen(AccountServices accountServices) {
         super("OpenAccountScreen", "/newaccount");
         System.out.println("[LOG] - Instantiating " + super.getName());
     }
 
     @Override
     public void render() {
+
+        Float balance;
+
+
         System.out.println("What kind of account do you want to open?");
-        System.out.println("1) Savings account");
+//        System.out.println("1) Savings account");
         System.out.println("2) Checking account");
         System.out.println("3) Logout");
 
@@ -30,9 +37,13 @@ public class OpenAccountScreen extends Screen {
             String userSelection = app.getConsole().readLine();
 
             switch (userSelection) {
-                case "1":
-                    break;
+//                case "1":
+//                    break;
                 case "2":
+                    balance = 0.00f;
+                    AccountInfo newAccount = new AccountInfo();
+
+                    accountServices.register(newAccount);
                     break;
                 case "3":
                     app.setCurrentUser(null);
@@ -42,32 +53,6 @@ public class OpenAccountScreen extends Screen {
                     System.out.println("[404] - Invalid selection!");
                     app.getRouter().navigate("/dashboard");
             }
-
-//            public UserInfo save(AccountInfo newAccount) {
-//                try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-//                    String sql = "INSERT INTO bank-console.savings_accounts " +
-//                            "(balance, interest_rate) " +
-//                            "VALUES (0, ?)";
-//
-//                    PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
-//
-//                    pstmt.setString(1, newAccount.getUserName());
-//
-//                    int affectedRows = pstmt.executeUpdate();
-//                    // check the affected rows
-//                    if (affectedRows > 0) {
-//                        // get the ID back
-//                        ResultSet rs = pstmt.getGeneratedKeys();
-//                        while (rs.next()) {
-//                            newUser.setId(rs.getInt(1));
-//                        }
-//
-//                    }
-//                } catch (SQLException ex) {
-//                    System.out.println(ex.getMessage());
-//                }
-//                return newAccount;
-
 
         } catch (Exception e) {
             e.printStackTrace();

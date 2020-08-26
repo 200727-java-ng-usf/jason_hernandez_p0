@@ -39,10 +39,10 @@ public class TransactionScreen extends Screen {
             Integer account = console.read();
 
             System.out.println("You entered: " + account);
-            if (account.equals(savingsAccountNumber)) {
-                app.getRouter().navigate("/savings");
-            } else if (account.equals(checkingAccountNumber)) {
+            if (account.equals(accountNumber)) {
                 app.getRouter().navigate("/checking");
+//            } else if (account.equals(savingsAccountNumber)) {
+//                app.getRouter().navigate("/savings");
             } else {
                 System.out.println("That is not a valid account number");
                     app.getRouter().navigate("/transaction");

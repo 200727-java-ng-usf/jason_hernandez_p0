@@ -64,13 +64,12 @@ public class CheckingRepo {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "INSERT INTO bank-console.checking_accounts " +
-                    "(account_number, balance) " +
-                    "VALUES (?, ?)";
+                    "(balance) " +
+                    "VALUES (?)";
 
             PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
 
-            pstmt.setFloat(1, newAccount.getAccountNumber());
-            pstmt.setFloat(2, newAccount.getBalance());
+            pstmt.setFloat(1, newAccount.getBalance());
 
 
             int affectedRows = pstmt.executeUpdate();

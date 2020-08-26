@@ -23,6 +23,11 @@ public class AccountServices {
         checkingRepo = cRepo;
     }
 
+    public void register(AccountInfo newAccount) {
+
+        AccountInfo registeredAccount = checkingRepo.save(newAccount);
+    }
+
     public Set<AccountInfo> getAllAccounts() {
         return new HashSet<>();
     }
