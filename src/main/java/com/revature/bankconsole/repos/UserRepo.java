@@ -25,7 +25,7 @@ public class UserRepo {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()){
             String sql =  baseQuery +
-                    "WHERE username = ? AND password = ?";
+                    "WHERE username = ? AND password = ?;";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
@@ -47,7 +47,7 @@ public class UserRepo {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = baseQuery + "WHERE username = ? ";
+            String sql = baseQuery + "WHERE username = ?;";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
 
