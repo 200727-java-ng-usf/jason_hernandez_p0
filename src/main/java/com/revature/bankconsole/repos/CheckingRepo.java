@@ -1,10 +1,8 @@
 package com.revature.bankconsole.repos;
 
 import com.revature.bankconsole.accounts.CheckingAccount;
-import com.revature.bankconsole.accounts.SavingsAccount;
 import com.revature.bankconsole.accounts.UserAccounts;
 import com.revature.bankconsole.models.AccountInfo;
-import com.revature.bankconsole.models.UserInfo;
 import com.revature.bankconsole.utilities.ConnectionFactory;
 
 import java.sql.Connection;
@@ -17,7 +15,7 @@ import java.util.Set;
 
 public class CheckingRepo {
 
-    private String baseQuery = "SELECT * FROM bank-console.savings_accounts ";
+    private String baseQuery = "SELECT * FROM bank-console.checking_accounts ";
 
     public Optional<CheckingAccount> findBalance(String username) {
 
@@ -46,7 +44,7 @@ public class CheckingRepo {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = baseQuery + "WHERE username = ?";
+            String sql = baseQuery + "WHERE checking_number = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, checking_number);
 

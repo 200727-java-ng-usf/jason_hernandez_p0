@@ -2,7 +2,7 @@ package com.revature.bankconsole.utilities;
 import com.revature.bankconsole.accounts.UserAccounts;
 import com.revature.bankconsole.screens.*;
 import com.revature.bankconsole.models.UserInfo;
-import com.revature.bankconsole.repos.UserRepo;
+import com.revature.bankconsole.repos.*;
 import com.revature.bankconsole.services.*;
 
 import java.io.BufferedReader;
@@ -13,6 +13,7 @@ public class AppState {
     private UserInfo currentUser;
     private ScreenRouter router;
     private boolean appRunning;
+    private AccountServices accountServices;
 
     public AppState() {
         System.out.println("Initializing application...");
@@ -21,7 +22,9 @@ public class AppState {
         console = new BufferedReader(new InputStreamReader(System.in));
 
         final UserRepo userRepo = new UserRepo();
+        final CheckingRepo checkingRepo = new CheckingRepo();
         final UserServices userService = new UserServices(userRepo);
+        final AccountServices accountServices = new AccountServices(checkingRepo);
         UserAccounts userAccounts = new UserAccounts();
 
         router = new ScreenRouter();
@@ -30,9 +33,10 @@ public class AppState {
                 .addScreen(new LoginScreen(userService))
                 .addScreen(new DashboardScreen())
                 .addScreen(new AccountsScreen(userAccounts))
-                .addScreen(new OpenAccountScreen())
+                .addScreen(new OpenAccountScreen(accountServices))
                 .addScreen(new TransactionScreen(userAccounts))
-                .addScreen(new UserProfileScreen());
+                .addScreen(new UserProfileScreen())
+                .addScreen(new CheckingTransactionScreen(userAccounts));
 
 
 
