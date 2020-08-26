@@ -129,3 +129,10 @@ foreign key(checking_number)
 	references checking_accounts
 	on delete cascade 
 	on update cascade;
+
+select * from savings_accounts;
+
+alter table savings_accounts 
+drop column interest_rate;
+
+commit;
