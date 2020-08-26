@@ -10,7 +10,6 @@ public class ScreenRouter {
         private Set<Screen> screens = new HashSet<>();
 
         public ScreenRouter addScreen(Screen screen) {
-            System.out.println("[LOG] - Loading " + screen.getName() + " into the router");
             screens.add(screen);
             return this;
         }

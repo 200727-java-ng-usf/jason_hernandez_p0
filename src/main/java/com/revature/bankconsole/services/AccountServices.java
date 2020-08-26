@@ -12,7 +12,6 @@ public class AccountServices {
     private SavingsRepo savingsRepo;
 
     public AccountServices(SavingsRepo sRepo) {
-        System.out.println("[LOG] - Instantiating" + this.getClass().getName());
         savingsRepo = sRepo;
     }
 

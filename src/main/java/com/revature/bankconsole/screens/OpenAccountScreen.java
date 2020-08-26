@@ -18,7 +18,6 @@ public class OpenAccountScreen extends Screen {
 
     public OpenAccountScreen(AccountServices accountServices) {
         super("OpenAccountScreen", "/newaccount");
-        System.out.println("[LOG] - Instantiating " + super.getName());
     }
 
     @Override

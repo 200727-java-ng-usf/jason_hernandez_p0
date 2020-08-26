@@ -13,7 +13,6 @@ public class UserServices {
     private UserRepo userRepo;
 
     public UserServices(UserRepo repo) {
-        System.out.println("[LOG] - Instantiating" + this.getClass().getName());
         userRepo = repo;
     }
 

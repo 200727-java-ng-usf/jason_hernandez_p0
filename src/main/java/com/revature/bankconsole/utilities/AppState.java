@@ -39,9 +39,6 @@ public class AppState {
                 .addScreen(new CheckingTransactionScreen(userAccounts));
 
 
-
-        System.out.println("[LOG] - Application initialization complete.");
-
     }
 
     public BufferedReader getConsole() {

@@ -15,9 +15,6 @@ public class UserRepo {
 
     private String baseQuery = "SELECT * FROM bank-console.users u ";
 
-    public UserRepo() {
-        System.out.println("[LOG] - Instantiating " + this.getClass().getName());
-    }
 
     public Optional<UserInfo> findUserByCredentials(String username, String password) {
 
