@@ -22,7 +22,7 @@ public class UserRepo {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()){
             String sql =  baseQuery +
-                    "WHERE username = ? AND password = ?;";
+                    "WHERE username = ? AND password = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
@@ -44,7 +44,7 @@ public class UserRepo {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql2 = baseQuery + "WHERE username = ?;";
+            String sql2 = baseQuery + "WHERE username = ?";
             PreparedStatement pstmt2 = conn.prepareStatement(sql2);
             pstmt2.setString(1, username);
 
@@ -65,7 +65,7 @@ public class UserRepo {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql3 = "INSERT INTO bank-console.users " +
                     "(first_name, last_name, email) " +
-                    "VALUES (?, ?, ?);";
+                    "VALUES (?, ?, ?)";
 
             PreparedStatement pstmt3 = conn.prepareStatement(sql3, new String[]{"id"});
 
@@ -85,7 +85,7 @@ public class UserRepo {
 
             String sql4 = "INSERT INTO bank-console.user_credentials " +
                     "(username, password) " +
-                    "VALUES (?, ?);";
+                    "VALUES (?, ?)";
 
             PreparedStatement pstmt4 = conn.prepareStatement(sql4, new String[]{"id"});
             pstmt4.setString(1, newUser.getUserName());

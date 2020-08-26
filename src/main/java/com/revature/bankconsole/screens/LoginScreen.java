@@ -11,6 +11,7 @@ public class LoginScreen extends Screen {
     private UserServices userService;
 
     public LoginScreen(UserServices userService) {
+
         super("Login Screen", "/login");
     }
 
