@@ -22,7 +22,7 @@ public class TransactionRepo {
             // Pre-made query template
             String sql = "Update bank-console.savings_account " +
                     "Set balance = ? " +
-                    "Where account_number = ?";
+                    "Where account_number = ?;";
             // Prepare a statement
             PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
             // Retrieve values from getters
@@ -49,7 +49,7 @@ public class TransactionRepo {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "UPDATE bank-console.checking_account " +
                     "Set balance = ?  " +
-                    "Where account_number = ?";
+                    "Where account_number = ?;";
 
             PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
 

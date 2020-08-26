@@ -47,7 +47,7 @@ public class UserRepo {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = baseQuery + "WHERE username = ?";
+            String sql = baseQuery + "WHERE username = ? ";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
 
@@ -67,16 +67,14 @@ public class UserRepo {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "INSERT INTO bank-console.users " +
-                    "(username, password, first_name, last_name, email) " +
-                    "VALUES (?, ?, ?, ?, ?, ?,)";
+                    "(first_name, last_name, email) " +
+                    "VALUES (?, ?, ?);";
 
             PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
 
-            pstmt.setString(1, newUser.getUserName());
-            pstmt.setString(2, newUser.getPassword());
-            pstmt.setString(3, newUser.getFirstName());
-            pstmt.setString(4, newUser.getLastName());
-            pstmt.setString(5, newUser.getEmail());
+            pstmt.setString(1, newUser.getFirstName());
+            pstmt.setString(2, newUser.getLastName());
+            pstmt.setString(3, newUser.getEmail());
 
             int affectedRows = pstmt.executeUpdate();
             // check the affected rows
@@ -86,8 +84,26 @@ public class UserRepo {
                 while (rs.next()) {
                     newUser.setId(rs.getInt(1));
                 }
-
             }
+
+            String sql2 = "INSERT INTO bank-console.user_credentials " +
+                    "(username, password) " +
+                    "VALUES (?, ?);";
+
+            PreparedStatement pstmt2 = conn.prepareStatement(sql2, new String[]{"id"});
+            pstmt2.setString(1, newUser.getUserName());
+            pstmt2.setString(2, newUser.getPassword());
+
+            int affectedRows2 = pstmt2.executeUpdate();
+            // check the affected rows
+            if (affectedRows2 > 0) {
+                // get the ID back
+                ResultSet rs = pstmt2.getGeneratedKeys();
+                while (rs.next()) {
+                    newUser.setId(rs.getInt(1));
+                }
+            }
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

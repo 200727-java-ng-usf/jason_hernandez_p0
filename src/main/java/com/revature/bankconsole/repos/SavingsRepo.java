@@ -24,7 +24,7 @@ public class SavingsRepo {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = baseQuery +
-                    "WHERE account_number = ? AND balance = ?";
+                    "WHERE account_number = ? AND balance = ?;";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, savings_number);
             pstmt.setFloat(2, balance);
@@ -44,7 +44,7 @@ public class SavingsRepo {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "INSERT INTO bank-console.savings_accounts " +
                     "(account_number, balance) " +
-                    "VALUES (?, ?)";
+                    "VALUES (?, ?);";
 
             PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
 
@@ -65,7 +65,7 @@ public class SavingsRepo {
 
             String sql2 = "INSERT INTO bank-console.user_accounts " +
                     "(user_id, checking_number) " +
-                    "VALUES (?, ?)";
+                    "VALUES (?, ?);";
 
             PreparedStatement pstmt2 = conn.prepareStatement(sql, new String[]{"id"});
 

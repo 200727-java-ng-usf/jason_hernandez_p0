@@ -36,8 +36,6 @@ public class HomeScreen extends Screen {
                     app.getRouter().navigate("/home");
             }
 
-        } catch (NullPointerException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -23,7 +23,7 @@ public class CheckingRepo {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = baseQuery + "WHERE username = ?";
+            String sql = baseQuery + "WHERE username = ?;";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
 
@@ -44,7 +44,7 @@ public class CheckingRepo {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = baseQuery + "WHERE checking_number = ?";
+            String sql = baseQuery + "WHERE checking_number = ?;";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, checking_number);
 
@@ -63,7 +63,7 @@ public class CheckingRepo {
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "INSERT INTO bank-console.checking_accounts " +
                     "(balance) " +
-                    "VALUES (?)";
+                    "VALUES (?);";
 
             PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
 

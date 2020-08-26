@@ -2,9 +2,7 @@ package com.revature.bankconsole.screens;
 
 import com.revature.bankconsole.services.UserServices;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 import static com.revature.bankconsole.AppDriver.app;
 
@@ -35,7 +33,7 @@ public class LoginScreen extends Screen {
 
 
             if (app.isSessionValid()) {
-                app.getRouter().navigate("/profile");
+                app.getRouter().navigate("/dashboard");
             }
 
         } catch (IOException ioe) {
