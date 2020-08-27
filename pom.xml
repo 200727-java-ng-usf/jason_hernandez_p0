@@ -20,7 +20,7 @@
         </plugins>
     </build>
     <dependencies>
-        <!-- Presistence dependency -->
+        <!-- Persistence dependency -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
