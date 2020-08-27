@@ -108,6 +108,8 @@ drop constraint account_fk_1;
 alter table user_accounts 
 drop constraint account_fk_2;
 
+select * from user_accounts;
+
 alter table user_accounts 
 drop constraint account_fk_3;
 

@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class UserRepo {
 
-    private String baseQuery = "SELECT * FROM bank-console.users u ";
+    private String baseQuery = "SELECT * FROM bank-console.user_credentials ";
 
 
     public Optional<UserInfo> findUserByCredentials(String username, String password) {

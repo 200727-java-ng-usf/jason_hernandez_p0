@@ -1,5 +1,6 @@
 package com.revature.bankconsole.screens;
 
+import com.revature.bankconsole.models.UserInfo;
 import com.revature.bankconsole.services.UserServices;
 
 import java.io.IOException;
@@ -13,7 +14,9 @@ public class LoginScreen extends Screen {
     public LoginScreen(UserServices userService) {
 
         super("Login Screen", "/login");
-    }
+        this.userService = userService;
+        }
+
 
     @Override
     public void render() {
