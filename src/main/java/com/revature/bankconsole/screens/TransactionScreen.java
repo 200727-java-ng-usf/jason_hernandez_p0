@@ -27,7 +27,7 @@ public class TransactionScreen extends Screen {
         // Show only accounts that the user has
         System.out.println("Your accounts are:");
         if (accountNumber != null) {
-            System.out.println("Savings: " + accountNumber);
+            System.out.println("Checking: " + accountNumber);
         }
 
 
@@ -38,7 +38,7 @@ public class TransactionScreen extends Screen {
             System.out.print("Please select an account.  ");
             Integer account = console.read();
 
-            System.out.println("You entered: " + account);
+            System.out.println("You entered: " + (account - 48));
             if (account.equals(accountNumber)) {
                 app.getRouter().navigate("/checking");
 //            } else if (account.equals(savingsAccountNumber)) {
