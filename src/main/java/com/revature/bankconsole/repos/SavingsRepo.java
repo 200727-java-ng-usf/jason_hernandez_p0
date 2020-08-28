@@ -15,7 +15,7 @@ import java.util.Set;
 
 public class SavingsRepo {
 
-    private String baseQuery = "SELECT * FROM bank-console.savings_accounts ";
+    private String baseQuery = "SELECT * FROM bankconsole.savings_accounts ";
 
 
     public Optional<SavingsAccount> findAccountNumber(int savings_number, float balance) {
@@ -42,7 +42,7 @@ public class SavingsRepo {
     public AccountInfo save(AccountInfo newAccount) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "INSERT INTO bank-console.savings_accounts " +
+            String sql = "INSERT INTO bankconsole.savings_accounts " +
                     "(account_number, balance) " +
                     "VALUES (?, ?)";
 
@@ -63,7 +63,7 @@ public class SavingsRepo {
 
             }
 
-            String sql2 = "INSERT INTO bank-console.user_accounts " +
+            String sql2 = "INSERT INTO bankconsole.user_accounts " +
                     "(user_id, checking_number) " +
                     "VALUES (?, ?)";
 

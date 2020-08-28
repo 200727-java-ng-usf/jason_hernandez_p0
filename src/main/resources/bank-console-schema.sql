@@ -111,6 +111,8 @@ drop constraint account_fk_2;
 select * from user_credentials
 where username = 'droptables' and password = 'xkcd';
 
+select * from users;
+
 alter table user_accounts 
 drop constraint account_fk_3;
 

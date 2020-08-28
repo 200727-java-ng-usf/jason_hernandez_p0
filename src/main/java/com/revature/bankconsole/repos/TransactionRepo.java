@@ -20,7 +20,7 @@ public class TransactionRepo {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             // Pre-made query template
-            String sql = "Update bank-console.savings_account " +
+            String sql = "Update bankconsole.savings_account " +
                     "Set balance = '?' " +
                     "Where account_number = ?";
             // Prepare a statement
@@ -47,7 +47,7 @@ public class TransactionRepo {
     public void save(CheckingAccount newTransaction) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "UPDATE bank-console.checking_account " +
+            String sql = "UPDATE bankconsole.checking_account " +
                     "Set balance = '?'  " +
                     "Where account_number = ?";
 

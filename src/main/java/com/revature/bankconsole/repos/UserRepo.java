@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class UserRepo {
 
-    private String baseQuery = "SELECT * FROM bank-console.user_credentials ";
+    private String baseQuery = "SELECT * FROM bankconsole.user_credentials ";
 
 
     public Optional<UserInfo> findUserByCredentials(String username, String password) {
@@ -63,7 +63,7 @@ public class UserRepo {
     public UserInfo save(UserInfo newUser) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            String sql3 = "INSERT INTO bank-console.users " +
+            String sql3 = "INSERT INTO bankconsole.users " +
                     "(first_name, last_name, email) " +
                     "VALUES (?, ?, ?)";
 
@@ -83,7 +83,7 @@ public class UserRepo {
                 }
             }
 
-            String sql4 = "INSERT INTO bank-console.user_credentials " +
+            String sql4 = "INSERT INTO bankconsole.user_credentials " +
                     "(username, password) " +
                     "VALUES (?, ?)";
 
@@ -115,9 +115,9 @@ public class UserRepo {
             temp.setId(rs.getInt("id"));
             temp.setUserName(rs.getString("username"));
             temp.setPassword(rs.getString("password"));
-            temp.setFirstName(rs.getString("first_name"));
-            temp.setLastName(rs.getString("last_name"));
-            temp.setEmail(rs.getString(rs.getString("email")));
+//            temp.setFirstName(rs.getString("first_name"));
+//            temp.setLastName(rs.getString("last_name"));
+//            temp.setEmail(rs.getString(rs.getString("email")));
 
             users.add(temp);
         }

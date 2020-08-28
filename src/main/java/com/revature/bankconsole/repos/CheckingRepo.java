@@ -15,7 +15,7 @@ import java.util.Set;
 
 public class CheckingRepo {
 
-    private String baseQuery = "SELECT * FROM bank-console.checking_accounts ";
+    private String baseQuery = "SELECT * FROM bankconsole.checking_accounts ";
 
     public Optional<CheckingAccount> findBalance(String username) {
 
@@ -61,7 +61,7 @@ public class CheckingRepo {
         public AccountInfo save(AccountInfo newAccount) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "INSERT INTO bank-console.checking_accounts " +
+            String sql = "INSERT INTO bankconsole.checking_accounts " +
                     "(balance) " +
                     "VALUES (?)";
 
