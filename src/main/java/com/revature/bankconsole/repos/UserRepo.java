@@ -77,9 +77,9 @@ public class UserRepo {
             // check the affected rows
             if (affectedRows > 0) {
                 // get the ID back
-                ResultSet rs = pstmt3.getGeneratedKeys();
-                while (rs.next()) {
-                    newUser.setId(rs.getInt(1));
+                ResultSet rs2 = pstmt3.getGeneratedKeys();
+                while (rs2.next()) {
+                    newUser.setId(rs2.getInt(1));
                 }
             }
 
@@ -115,12 +115,23 @@ public class UserRepo {
             temp.setId(rs.getInt("id"));
             temp.setUserName(rs.getString("username"));
             temp.setPassword(rs.getString("password"));
-//            temp.setFirstName(rs.getString("first_name"));
-//            temp.setLastName(rs.getString("last_name"));
-//            temp.setEmail(rs.getString(rs.getString("email")));
 
             users.add(temp);
         }
         return users;
+    }
+
+    private Set<UserInfo> mapResultSet2(ResultSet rs2) throws SQLException {
+        Set<UserInfo> userInfoSet = new HashSet<>();
+
+        while (rs2.next()) {
+            UserInfo temp2 = new UserInfo();
+            temp2.setFirstName(rs2.getString("first_name"));
+            temp2.setLastName(rs2.getString("last_name"));
+            temp2.setEmail(rs2.getString(rs2.getString("email")));
+
+            userInfoSet.add(temp2);
+        }
+        return userInfoSet;
     }
 }

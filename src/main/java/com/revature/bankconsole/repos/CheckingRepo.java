@@ -17,15 +17,18 @@ public class CheckingRepo {
 
     private String baseQuery = "SELECT * FROM bankconsole.checking_accounts ";
 
-    public Optional<CheckingAccount> findBalance(String username) {
+    public Optional<CheckingAccount> findBalance(Integer user_id) {
 
         Optional<CheckingAccount> _account = Optional.empty();
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-            String sql = baseQuery + "WHERE username = ?";
+            String sql = baseQuery +
+                    "JOIN user_accounts ua \n" +
+                    "ON ca.account_number=ua.checking_number \n" +
+                    "AND ua.user_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, username);
+            pstmt.setInt(1, user_id);
 
             ResultSet rs = pstmt.executeQuery();
             _account = mapResultSet(rs).stream().findFirst();

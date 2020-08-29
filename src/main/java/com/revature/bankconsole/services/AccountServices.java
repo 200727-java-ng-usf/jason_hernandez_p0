@@ -1,5 +1,7 @@
 package com.revature.bankconsole.services;
 
+import com.revature.bankconsole.accounts.CheckingAccount;
+import com.revature.bankconsole.exceptions.AuthenticationException;
 import com.revature.bankconsole.models.AccountInfo;
 import com.revature.bankconsole.repos.CheckingRepo;
 import com.revature.bankconsole.repos.SavingsRepo;
@@ -17,9 +19,15 @@ public class AccountServices {
 
     private CheckingRepo checkingRepo;
 
-    public AccountServices(CheckingRepo cRepo) {
-        System.out.println("[LOG] - Instantiating" + this.getClass().getName());
-        checkingRepo = cRepo;
+    public CheckingAccount AccountServices(Integer user_id) {
+        if(user_id == null) {
+            throw new RuntimeException("404 - No account found!");
+        }
+        CheckingAccount currentAccount = checkingRepo.findBalance(user_id)
+                .orElseThrow(AuthenticationException::new);
+
+//        app.(currentAccount);
+        return currentAccount;
     }
 
     public void register(AccountInfo newAccount) {

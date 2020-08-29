@@ -38,6 +38,7 @@ public class UserAccounts {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+
         return UserAccounts.this;
     }
 
@@ -46,7 +47,8 @@ public class UserAccounts {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             // Query the database
-            String sql = "Select * FROM checking_accounts ca JOIN user_accounts ua " +
+            String sql = "Select account_number, balance FROM checking_accounts ca " +
+                    "JOIN user_accounts ua " +
                     "ON ca.account_number=ua.checking_number " +
                     "AND ua.user_id = ?";
             PreparedStatement pstmt2 = conn.prepareStatement(sql);
