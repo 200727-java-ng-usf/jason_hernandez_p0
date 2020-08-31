@@ -1,16 +1,28 @@
 package com.revature.bankconsole.screens;
 
 import com.revature.bankconsole.accounts.UserAccounts;
+import com.revature.bankconsole.models.UserInfo;
+import com.revature.bankconsole.services.AccountServices;
 
 import static com.revature.bankconsole.AppDriver.app;
 
 public class AccountsScreen extends Screen {
 
     private UserAccounts userAccounts;
+    UserInfo userInfo;
+    private AccountServices accountService;
+
 
     public AccountsScreen(UserAccounts userAccounts) {
         super("AccountsScreen", "/accounts");
         this.userAccounts = userAccounts;
+
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = app.getCurrentUser();
+        accountService.getAccountById();
+
     }
 
     @Override

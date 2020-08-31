@@ -18,6 +18,7 @@ public class OpenAccountScreen extends Screen {
 
     public OpenAccountScreen(AccountServices accountServices) {
         super("OpenAccountScreen", "/newaccount");
+        this.accountServices = accountServices;
     }
 
     @Override
@@ -27,7 +28,7 @@ public class OpenAccountScreen extends Screen {
 
 
         System.out.println("What kind of account do you want to open?");
-//        System.out.println("1) Savings account");
+        System.out.println("1) Savings account");
         System.out.println("2) Checking account");
         System.out.println("3) Logout");
 
@@ -36,8 +37,11 @@ public class OpenAccountScreen extends Screen {
             String userSelection = app.getConsole().readLine();
 
             switch (userSelection) {
-//                case "1":
-//                    break;
+                case "1":
+                    balance = 0.00f;
+                    AccountInfo newSAccount = new AccountInfo();
+                    accountServices.register(newSAccount);
+                    break;
                 case "2":
                     balance = 0.00f;
                     AccountInfo newAccount = new AccountInfo();
