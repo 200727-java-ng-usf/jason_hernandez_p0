@@ -13,9 +13,13 @@ import java.util.Set;
 
 public class UserRepo {
 
+    public UserRepo() {
+
+    }
+
     private String baseQuery = "SELECT * FROM bankconsole.user_credentials ";
 
-
+    // For finding existing customer
     public Optional<UserInfo> findUserByCredentials(String username, String password) {
 
         Optional<UserInfo> _user = Optional.empty();
@@ -38,6 +42,7 @@ public class UserRepo {
         return _user;
     }
 
+    // Another way to find an existing user
     public Optional<UserInfo> findUserByUsername(String username) {
 
         Optional<UserInfo> _user = Optional.empty();
@@ -59,8 +64,27 @@ public class UserRepo {
 
     }
 
+    // When we need to refer to account number
+    public Optional<UserInfo> findUserByAccountNumber(Integer accountNumber) {
+        Optional<UserInfo> _user = Optional.empty();
 
-    public UserInfo save(UserInfo newUser) {
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+            String pgsql2 = "Select * FROM user_accounts WHERE account_number = ?";
+            PreparedStatement pstmt = conn.prepareStatement(pgsql2);
+            pstmt.setInt(1, accountNumber);
+
+            ResultSet rs = pstmt.executeQuery();
+            _user = mapResultSet(rs).stream().findFirst();
+        } catch (SQLException sqle){
+            sqle.printStackTrace();
+        }
+        return _user;
+    }
+
+    // For registring a new customer
+    public boolean save(UserInfo newUser) {
+
+        boolean success = false;
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql3 = "INSERT INTO bankconsole.users " +
@@ -73,15 +97,7 @@ public class UserRepo {
             pstmt3.setString(2, newUser.getLastName());
             pstmt3.setString(3, newUser.getEmail());
 
-            int affectedRows = pstmt3.executeUpdate();
-            // check the affected rows
-            if (affectedRows > 0) {
-                // get the ID back
-                ResultSet rs2 = pstmt3.getGeneratedKeys();
-                while (rs2.next()) {
-                    newUser.setId(rs2.getInt(1));
-                }
-            }
+            pstmt3.executeUpdate();
 
             String sql4 = "INSERT INTO bankconsole.user_credentials " +
                     "(username, password) " +
@@ -91,21 +107,16 @@ public class UserRepo {
             pstmt4.setString(1, newUser.getUserName());
             pstmt4.setString(2, newUser.getPassword());
 
-            int affectedRows2 = pstmt4.executeUpdate();
-            // check the affected rows
-            if (affectedRows2 > 0) {
-                // get the ID back
-                ResultSet rs = pstmt4.getGeneratedKeys();
-                while (rs.next()) {
-                    newUser.setId(rs.getInt(1));
-                }
-            }
+            pstmt4.executeUpdate();
+
+            success = true;
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return newUser;
+        return success;
     }
+
 
     private Set<UserInfo> mapResultSet(ResultSet rs) throws SQLException {
         Set<UserInfo> users = new HashSet<>();
@@ -115,23 +126,14 @@ public class UserRepo {
             temp.setId(rs.getInt("id"));
             temp.setUserName(rs.getString("username"));
             temp.setPassword(rs.getString("password"));
+            temp.setFirstName(rs.getString("first_name"));
+            temp.setLastName(rs.getString("last_name"));
+            temp.setEmail(rs.getString(rs.getString("email")));
 
             users.add(temp);
         }
         return users;
     }
 
-    private Set<UserInfo> mapResultSet2(ResultSet rs2) throws SQLException {
-        Set<UserInfo> userInfoSet = new HashSet<>();
 
-        while (rs2.next()) {
-            UserInfo temp2 = new UserInfo();
-            temp2.setFirstName(rs2.getString("first_name"));
-            temp2.setLastName(rs2.getString("last_name"));
-            temp2.setEmail(rs2.getString(rs2.getString("email")));
-
-            userInfoSet.add(temp2);
-        }
-        return userInfoSet;
-    }
 }

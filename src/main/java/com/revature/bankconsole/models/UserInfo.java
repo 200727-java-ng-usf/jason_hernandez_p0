@@ -5,12 +5,21 @@ import java.util.Objects;
 public class UserInfo {
 
     // Set up fields
-    private Integer id;
+    static Integer id;
     private String firstName;
     private String lastName;
     private String userName;
     private String password;
     private String email;
+    private AccountInfo accountInfo;
+
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(int accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 
     public UserInfo(){}
 
@@ -41,8 +50,8 @@ public class UserInfo {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer accountNumber) {
+        this.id = accountNumber;
     }
 
     public String getFirstName() {
@@ -85,6 +94,14 @@ public class UserInfo {
         this.email = email;
     }
 
+    public AccountInfo getAccount() {
+        return accountInfo;
+    }
+
+    public void setAccount(AccountInfo accountInfo) {
+        this.accountInfo = accountInfo;
+    }
+
     @Override
     public String toString() {
         return "appUser{" +
@@ -107,12 +124,13 @@ public class UserInfo {
                 Objects.equals(lastName, appUser.lastName) &&
                 Objects.equals(userName, appUser.userName) &&
                 Objects.equals(password, appUser.password) &&
+                Objects.equals(accountInfo, appUser.accountInfo) &&
                 Objects.equals(email, appUser.email);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName,
-                userName, password, email);
+                userName, password, accountInfo, email);
     }
 }

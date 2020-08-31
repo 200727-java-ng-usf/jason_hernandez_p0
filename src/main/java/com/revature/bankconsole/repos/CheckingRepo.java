@@ -15,6 +15,25 @@ import java.util.Set;
 
 public class CheckingRepo {
 
+    public CheckingRepo() {
+
+    }
+    // For deposits and withdrawals
+    public void updateAccount(int accountNumber, float balance) {
+
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            String pgsql = "UPDATE bankconsole.checking_accounts " +
+                    "SET balance = ? " +
+                    "WHERE account_number = ?";
+            PreparedStatement pstmt = conn.prepareStatement(pgsql);
+            pstmt.setFloat(1, balance);
+            pstmt.setInt(2, accountNumber);
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+    }
+
     private String baseQuery = "SELECT * FROM bankconsole.checking_accounts ";
 
     public Optional<CheckingAccount> findBalance(Integer user_id) {
@@ -68,7 +87,7 @@ public class CheckingRepo {
                 System.out.println(temp);
                 acc.add(temp);
             }
-            _account = mapResultSet(rs).stream().findFirst();
+            return acc.stream().findFirst();
 
 
         } catch (SQLException sqle) {
@@ -76,30 +95,20 @@ public class CheckingRepo {
         }
         return _account;
     }
-
+        // For adding a new account
         public AccountInfo save(AccountInfo newAccount) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "INSERT INTO bankconsole.checking_accounts " +
-                    "(balance) " +
-                    "VALUES (?)";
+                    "(account_number, balance) " +
+                    "VALUES (?, ?)";
 
-            PreparedStatement pstmt = conn.prepareStatement(sql, new String[]{"id"});
+            PreparedStatement pstmt = conn.prepareStatement(sql);
 
-            pstmt.setFloat(1, newAccount.getBalance());
+            pstmt.setInt(1, newAccount.getAccountNumber());
+            pstmt.setFloat(2, 0);
 
-
-            int affectedRows = pstmt.executeUpdate();
-            // check the affected rows
-            if (affectedRows > 0) {
-                // get the ID back
-                ResultSet rs = pstmt.getGeneratedKeys();
-                while (rs.next()) {
-                    newAccount.setAccountNumber(rs.getInt(1));
-                }
-
-            }
-
+            pstmt.executeUpdate();
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
