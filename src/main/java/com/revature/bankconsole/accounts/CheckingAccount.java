@@ -4,6 +4,7 @@ public class CheckingAccount {
 
     float balance;
     float amount = 0;
+    int checkingNumber;
 
     public void transactionType(String transaction) {
 
@@ -41,6 +42,14 @@ public class CheckingAccount {
 
     public void setAmount(float amount) {
         this.amount = amount;
+    }
+
+    public int getAccountNo() {
+        return checkingNumber;
+    }
+
+    public void setAccountNo(int accountNo) {
+        this.checkingNumber = accountNo;
     }
 
 

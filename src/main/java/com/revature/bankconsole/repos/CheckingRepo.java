@@ -31,6 +31,14 @@ public class CheckingRepo {
             pstmt.setInt(1, user_id);
 
             ResultSet rs = pstmt.executeQuery();
+            Set<CheckingAccount> acc = new HashSet<>();
+            while (rs.next()) {
+                CheckingAccount temp = new CheckingAccount();
+                temp.setBalance(rs.getFloat("balance"));
+                temp.setAccountNo(rs.getInt("checking_no"));
+                System.out.println(temp);
+                acc.add(temp);
+            }
             _account = mapResultSet(rs).stream().findFirst();
 
 
@@ -52,6 +60,14 @@ public class CheckingRepo {
             pstmt.setInt(1, checking_number);
 
             ResultSet rs = pstmt.executeQuery();
+            Set<CheckingAccount> acc = new HashSet<>();
+            while (rs.next()) {
+                CheckingAccount temp = new CheckingAccount();
+                temp.setBalance(rs.getFloat("balance"));
+                temp.setAccountNo(rs.getInt("checking_no"));
+                System.out.println(temp);
+                acc.add(temp);
+            }
             _account = mapResultSet(rs).stream().findFirst();
 
 

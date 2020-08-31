@@ -4,17 +4,17 @@ import com.revature.bankconsole.accounts.CheckingAccount;
 import com.revature.bankconsole.exceptions.AuthenticationException;
 import com.revature.bankconsole.models.AccountInfo;
 import com.revature.bankconsole.repos.CheckingRepo;
-import com.revature.bankconsole.repos.SavingsRepo;
+// import com.revature.bankconsole.repos.SavingsRepo;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class AccountServices {
 
-    private SavingsRepo savingsRepo;
-
-    public AccountServices(SavingsRepo sRepo) {
-        savingsRepo = sRepo;
+//    private SavingsRepo savingsRepo;
+//
+    public AccountServices(CheckingRepo cRepo) {
+        checkingRepo = cRepo;
     }
 
     private CheckingRepo checkingRepo;
