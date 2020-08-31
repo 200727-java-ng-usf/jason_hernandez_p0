@@ -1,31 +1,60 @@
 package com.revature.bankconsole.accounts;
 
+import com.revature.bankconsole.models.UserInfo;
+
+import java.util.Objects;
+
 public class CheckingAccount {
 
-    float balance;
+    private float balance;
     float amount = 0;
     int checkingNumber;
 
-    public void transactionType(String transaction) {
+    public CheckingAccount() {
 
-        // Prevention of negative deposits/withdrawals
-        if (amount < 0) {
-            System.out.println("Invalid amount");
-        }
+        UserInfo userInfo = new UserInfo();
+    }
 
-        // Two possibilities
-        switch (transaction) {
-            case "deposit":
+    public CheckingAccount(int checkingNumber, float balance) {
+        this.checkingNumber = checkingNumber;
+        this.balance = balance;
+    }
 
-                balance = balance + amount; // add deposit to balance
+    public CheckingAccount(float balance) {
+        this.balance = balance;
+    }
 
-            case "withdrawal":
-                if (balance - amount < 0) { // This if statement prevents overdrafts
-                    System.out.println("Insufficient funds"); // My own code added
-                } else {
-                    balance = balance - amount; // subtract withdrawal from balance
-                }
-        }
+    public boolean deposit(float amount) {
+        balance += amount;
+        return true;
+    }
+
+    public boolean withdrawal(float amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            return true;
+        } else {
+            System.out.println("Insufficient funds!");
+        } return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(!(o instanceof CheckingAccount)) return false;
+        CheckingAccount account = (CheckingAccount) o;
+        return Float.compare(account.getBalance(), getBalance()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getBalance());
+    }
+
+
+    @Override
+    public String toString() {
+        return " ";
     }
 
     public float getBalance() {

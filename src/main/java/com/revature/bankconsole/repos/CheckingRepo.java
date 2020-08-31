@@ -96,7 +96,7 @@ public class CheckingRepo {
         return _account;
     }
         // For adding a new account
-        public AccountInfo save(AccountInfo newAccount) {
+        public AccountInfo saveNewAccount(AccountInfo newAccount) {
 
         try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
             String sql = "INSERT INTO bankconsole.checking_accounts " +

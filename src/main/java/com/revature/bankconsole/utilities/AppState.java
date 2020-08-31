@@ -23,20 +23,15 @@ public class AppState {
 
         final UserRepo userRepo = new UserRepo();
         final CheckingRepo checkingRepo = new CheckingRepo();
-        final UserServices userService = new UserServices(userRepo);
+        final UserServices userService = new UserServices();
         final AccountServices accountServices = new AccountServices(checkingRepo);
         UserAccounts userAccounts = new UserAccounts();
 
         router = new ScreenRouter();
         router.addScreen(new HomeScreen())
-                .addScreen(new RegistrationScreen(userService))
+                .addScreen(new RegistrationScreen())
                 .addScreen(new LoginScreen(userService))
-                .addScreen(new DashboardScreen())
-                .addScreen(new AccountsScreen(userAccounts))
-                .addScreen(new OpenAccountScreen(accountServices))
-                .addScreen(new TransactionScreen(userAccounts))
-                .addScreen(new UserProfileScreen())
-                .addScreen(new CheckingTransactionScreen(userAccounts));
+                .addScreen(new DashboardScreen());
 
 
     }
@@ -63,10 +58,6 @@ public class AppState {
 
     public void setAppRunning(boolean appRunning) {
         this.appRunning = appRunning;
-    }
-
-    public void invalidateCurrentSession() {
-        currentUser = null;
     }
 
     public boolean isSessionValid() {

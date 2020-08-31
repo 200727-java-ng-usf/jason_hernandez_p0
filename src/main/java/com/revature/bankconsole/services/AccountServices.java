@@ -19,7 +19,7 @@ public class AccountServices {
 
     private UserInfo authUser;
 
-    private AccountServices() {
+    AccountServices() {
         userServices = new UserServices();
         checkingRepo = new CheckingRepo();
     }

@@ -8,13 +8,19 @@ import java.io.IOException;
 import static com.revature.bankconsole.AppDriver.app;
 
 public class LoginScreen extends Screen {
+    private static int counter = 3;
 
     private UserServices userService;
+    private UserInfo authUser;
 
     public LoginScreen(UserServices userService) {
 
         super("Login Screen", "/login");
         this.userService = userService;
+        }
+
+        public int getCounter() {
+            return counter;
         }
 
 
