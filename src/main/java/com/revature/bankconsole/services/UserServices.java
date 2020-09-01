@@ -22,16 +22,19 @@ public class UserServices {
     }
 
     // Authenticate an existing customer
-    public UserInfo authenticate(String username, String password) {
+    public UserInfo authenticate(String username, String password) throws AuthenticationException {
         if(username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
             throw new RuntimeException("401 - Invalid credentials provided!");
         }
         UserInfo authUser = userRepo.findUserByCredentials(username, password)
                 .orElseThrow(AuthenticationException::new);
+        if (authUser == null) {
+            throw new AuthenticationException();
+        }
 
         // Get the user's account number here
         Integer accountNumber = authUser.getAccountNumber();
-        CheckingAccount chk = checkingRepo.findAccountByNumber(accountNumber).orElseThrow(AuthenticationException::new);
+        AccountInfo chk = checkingRepo.findAccountByNumber(accountNumber).orElseThrow(AuthenticationException::new);
 
         authUser.setAccount(chk);
         return authUser;
@@ -51,7 +54,7 @@ public class UserServices {
         }
 
         successful = userRepo.save(newUser); // Add user to database
-        if(successful) checkingRepo.saveNewAccount();
+        if(successful) checkingRepo.saveNewAccount(newUser);
 
         return successful;
     }

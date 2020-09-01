@@ -1,16 +1,13 @@
 package com.revature.bankconsole.services;
 
-import com.revature.bankconsole.accounts.CheckingAccount;
-import com.revature.bankconsole.exceptions.AuthenticationException;
 import com.revature.bankconsole.models.AccountInfo;
 import com.revature.bankconsole.models.UserInfo;
 import com.revature.bankconsole.repos.CheckingRepo;
-// import com.revature.bankconsole.repos.SavingsRepo;
 
-import java.util.HashSet;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.util.Set;
+import java.text.NumberFormat;
+import java.util.*;
+
+// import com.revature.bankconsole.repos.SavingsRepo;
 
 public class AccountServices {
 
@@ -18,14 +15,17 @@ public class AccountServices {
     private CheckingRepo checkingRepo;
 
     private UserInfo authUser;
+    NumberFormat us   = NumberFormat.getCurrencyInstance(Locale.US);   // print USD format
 
-    AccountServices() {
+
+    public AccountServices() {
         userServices = new UserServices();
         checkingRepo = new CheckingRepo();
     }
 
     // Sets the current user in this class
     public void setAuthUser(UserInfo authUser) {
+
         this.authUser = authUser;
     }
 
@@ -47,9 +47,9 @@ public class AccountServices {
         } else successful = false;
 
         if (successful) {
-            System.out.println("You deposited: $" + amount);
-            System.out.println("Your new balance is: $ " + authUser.getAccount().getBalance());
-            update(authUser.getAccount().getBalance());
+            System.out.println("You deposited: " + us.format(amount));
+            System.out.println("Your new balance is: " + us.format(authUser.getAccount().getBalance()));
+            update(authUser.getAccountNumber(),authUser.getAccount().getBalance());
         } else {
             System.out.println("Error - transaction unsuccessful");
         }
@@ -75,8 +75,8 @@ public class AccountServices {
 
         if (successful) {
             System.out.println("You withdrew: $" + amount);
-            System.out.println("Your new balance is: $ " + authUser.getAccount().getBalance());
-            update(authUser.getAccount().getBalance());
+            System.out.println("Your new balance is: $ " + us.format(authUser.getAccount().getBalance()));
+            update(authUser.getAccountNumber(),authUser.getAccount().getBalance());
         } else {
             System.out.println("Error - transaction unsuccessful");
         }
@@ -87,7 +87,7 @@ public class AccountServices {
         return new HashSet<>();
     }
 
-    public boolean update(AccountInfo updatedAccount) {
-        return false;
+    public void update(Integer accountNo, Float balance){
+        checkingRepo.updateAccount(accountNo,balance);
     }
 }

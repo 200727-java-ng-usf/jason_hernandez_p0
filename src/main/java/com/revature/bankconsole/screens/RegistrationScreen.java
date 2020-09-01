@@ -1,9 +1,11 @@
 package com.revature.bankconsole.screens;
 
+import com.revature.bankconsole.models.AccountInfo;
 import com.revature.bankconsole.models.UserInfo;
 import com.revature.bankconsole.repos.CheckingRepo;
 import com.revature.bankconsole.repos.UserRepo;
 import com.revature.bankconsole.services.UserServices;
+import com.revature.bankconsole.utilities.AccountNumberGenerator;
 
 import java.io.IOException;
 
@@ -49,14 +51,15 @@ public class RegistrationScreen extends Screen {
             password = app.getConsole().readLine();
 
             // All the above inputs go into this new user profile.
-            UserInfo newUser = new UserInfo(firstname, lastname, username, password, email);
+            UserInfo newUser = new UserInfo(firstname, lastname, email, username, password);
 
+            Integer newAccount;
             boolean hasAccount = true;
             while (hasAccount) {
-
-                hasAccount = checkingRepo.findAccountByNumber(newUser).isPresent();
+                newAccount= AccountNumberGenerator.newAccountNumber();
+                hasAccount = checkingRepo.findAccountByNumber(newAccount).isPresent();
             }
-            newUser.setAccount(newUser);
+            newUser.setAccountNumber(AccountNumberGenerator.newAccountNumber());
 
             userService.register(newUser);
             System.out.println("New profile created successfully");

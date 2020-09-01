@@ -1,5 +1,7 @@
 package com.revature.bankconsole.models;
 
+import com.revature.bankconsole.exceptions.OverdraftException;
+
 import java.util.Objects;
 
 public class AccountInfo {
@@ -9,7 +11,10 @@ public class AccountInfo {
     private Float balance;
     static Integer count = 1;
 
+    // Bring a customer to the account
+
     public AccountInfo(){
+
         UserInfo userInfo = new UserInfo();
     }
 
@@ -20,20 +25,27 @@ public class AccountInfo {
         this.balance = balance;
     }
 
+    public AccountInfo(Float balance) {
+        this.balance = balance;
+    }
+
     // Makes a copy (for thread safety)
     public AccountInfo(AccountInfo copy) {
+
         this(copy.balance, copy.accountNumber);
     }
 
     public Integer getAccountNumber() {
+
         return accountNumber;
     }
 
     public void setAccountNumber(Integer accountNumber) {
+
         this.accountNumber = accountNumber;
     }
 
-    public AccountInfo getBalance() {
+    public Float getBalance() {
         return balance;
     }
 
@@ -42,22 +54,17 @@ public class AccountInfo {
     }
 
     public boolean deposit(float amount) {
-        if(amount < 0) {
-            System.out.println("Cannot deposit a negative");
-        } else {
-            balance += amount;
-
-        } return true;
+        balance += amount;
+        return true;
     }
 
-    public boolean withdrawal(float amount) {
-        if(amount < 0) {
-            System.out.println("Cannot withdraw a negative");
-        } else if (amount > balance) {
-            System.out.println("Insufficient funds");
-        } else {
+    public boolean withdrawal(float amount) throws OverdraftException {
+        if (amount <= balance) {
             balance -= amount;
-        } return true;
+            return true;
+        } else {
+            throw new OverdraftException("Insufficient funds!");
+        }
     }
 
     @Override
@@ -70,7 +77,7 @@ public class AccountInfo {
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountNumber, balance);
+        return Objects.hash(getBalance());
     }
 
     @Override

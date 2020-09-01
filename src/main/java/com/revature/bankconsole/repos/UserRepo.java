@@ -128,7 +128,7 @@ public class UserRepo {
             temp.setPassword(rs.getString("password"));
             temp.setFirstName(rs.getString("first_name"));
             temp.setLastName(rs.getString("last_name"));
-            temp.setEmail(rs.getString(rs.getString("email")));
+            temp.setEmail(rs.getString("email"));
 
             users.add(temp);
         }

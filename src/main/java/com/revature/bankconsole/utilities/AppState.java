@@ -24,7 +24,7 @@ public class AppState {
         final UserRepo userRepo = new UserRepo();
         final CheckingRepo checkingRepo = new CheckingRepo();
         final UserServices userService = new UserServices();
-        final AccountServices accountServices = new AccountServices(checkingRepo);
+        final AccountServices accountServices = new AccountServices();
         UserAccounts userAccounts = new UserAccounts();
 
         router = new ScreenRouter();

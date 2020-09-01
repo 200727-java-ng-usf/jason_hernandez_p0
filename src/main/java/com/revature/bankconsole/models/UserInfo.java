@@ -12,12 +12,14 @@ public class UserInfo {
     private String password;
     private String email;
     private AccountInfo accountInfo;
+    private Integer accountNumber;
 
     public int getAccountNumber() {
         return accountNumber;
     }
 
     public void setAccountNumber(int accountNumber) {
+
         this.accountNumber = accountNumber;
     }
 
@@ -98,20 +100,13 @@ public class UserInfo {
         return accountInfo;
     }
 
-    public void setAccount(UserInfo accountInfo) {
+    public void setAccount(AccountInfo accountInfo) {
         this.accountInfo = accountInfo;
     }
 
     @Override
     public String toString() {
-        return "appUser{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", email=" + email +
-                '}';
+        return " ";
     }
 
     @Override
@@ -133,4 +128,6 @@ public class UserInfo {
         return Objects.hash(id, firstName, lastName,
                 userName, password, accountInfo, email);
     }
+
+
 }
